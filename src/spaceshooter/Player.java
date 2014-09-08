@@ -8,17 +8,16 @@ import static spaceshooter.SpaceShooter.screen;
 
 public class Player {
     
-    static int x = 300, y = 300, xDir = 0, yDir = 0, SPEED = 3;
+    static final int SPEED = 3, SIZE = 32;
+    static int x = 300, y = 300, xDir = 0, yDir = 0;
     
     void drawPlayer() {
-        x += xDir;
-        y += yDir;
+        if (x + SIZE + xDir < SpaceShooter.WIDTH && x + xDir > 0) x += xDir;
+        if (y + SIZE + yDir < SpaceShooter.HEIGHT && y + yDir > 0) y += yDir;
         
         Graphics2D painter = screen.createGraphics();
-        painter.setColor(Color.BLACK);
-        painter.fillRect(0, 0, screen.getWidth(), screen.getHeight());
         painter.setColor(Color.RED);
-        painter.fillOval(x, y, 10, 10);
+        painter.fillOval(x, y, 32, 32);
     }
     
     static KeyListener keyControl = new KeyListener() {

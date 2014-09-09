@@ -25,17 +25,18 @@ public class SpaceShooter {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Space Shooter Game");
         frame.setResizable(false);
-        frame.addKeyListener(Player.keyControl);
         
         JPanel panel = new JPanel();
         panel.add(new JLabel(new ImageIcon(screen)));
+        panel.addKeyListener(Player.keyControl);
+        panel.addMouseMotionListener(Player.mouseControl);
         frame.add(panel);
         frame.setVisible(true);
         frame.setSize(WIDTH + 7, HEIGHT + 34);
         frame.setLocationRelativeTo(null);
         
         try {
-            player.ship = ImageIO.read(new File("E:/Programming/Java/SpaceShooter/src/spaceshooter/img/ship.png"));
+            player.ship = ImageIO.read(new File("E:/Programming/SpaceShooter/src/spaceshooter/img/ship.png"));
         }
         catch (IOException ex) {
             System.err.println(ex);

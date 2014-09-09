@@ -1,9 +1,11 @@
 package spaceshooter;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.util.HashSet;
 import static spaceshooter.SpaceShooter.screen;
@@ -11,7 +13,7 @@ import static spaceshooter.SpaceShooter.screen;
 public class Player {
     
     static final int SPEED = 3, SIZE = 40;
-    static int x = 300, y = 300;
+    static int x = 300, y = 300, mouseX, mouseY;
     static HashSet<Integer> keys = new HashSet<>();
     BufferedImage ship;
 
@@ -22,9 +24,10 @@ public class Player {
         if (keys.contains(KeyEvent.VK_S) && y + SIZE + SPEED < SpaceShooter.HEIGHT) y += SPEED;
         
         Graphics2D painter = screen.createGraphics();
-//        painter.setColor(Color.RED);
-//        painter.fillOval(x, y, SIZE, SIZE);
-        painter.drawImage(ship, x, y, null);
+        AffineTransform tran = new AffineTransform();
+        tran.translate(x, y);
+        tran.rotate(Math.atan2(mouseY - (y + SIZE / 2), mouseX - (x + SIZE / 2)) - Math.PI / 2, SIZE / 2, SIZE / 2);
+        painter.drawImage(ship, tran, null);
     }
     
     static KeyListener keyControl = new KeyListener() {
@@ -44,4 +47,20 @@ public class Player {
             keys.remove(key.getKeyCode());
         }
     };
+    
+    static MouseMotionListener mouseControl = new MouseMotionListener() {
+        
+        @Override
+        public void mouseDragged(MouseEvent me) {
+            mouseX = me.getX();
+            mouseY = me.getY();
+        }
+
+        @Override
+        public void mouseMoved(MouseEvent me) {
+            mouseX = me.getX();
+            mouseY = me.getY();
+        }
+    };
+    
 }

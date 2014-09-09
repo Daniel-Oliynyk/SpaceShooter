@@ -7,7 +7,7 @@ import java.util.Random;
 import static spaceshooter.SpaceShooter.screen;
 
 public class Map {
-    static final int STAR_AMOUNT = 300, UPDATE_AMOUNT = 2;
+    static final int STAR_AMOUNT = 300, UPDATE_AMOUNT = 1;
     static Random ran = new Random();
     static Point2D.Double[] star = new Point2D.Double[STAR_AMOUNT];
 

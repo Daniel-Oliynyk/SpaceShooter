@@ -1,10 +1,10 @@
 package spaceshooter;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
@@ -49,15 +49,12 @@ public class Player {
         }
     };
     
-    static MouseMotionListener mouseControl = new MouseMotionListener() {
+    static MouseMotionListener moveControl = new MouseMotionListener() {
         
         @Override
         public void mouseDragged(MouseEvent me) {
             mouseX = me.getX();
             mouseY = me.getY();
-            Graphics2D painter = screen.createGraphics();
-            painter.setColor(Color.YELLOW);
-            painter.drawLine(x + SIZE / 2, y + SIZE / 2, mouseX, mouseY);
         }
 
         @Override
@@ -67,4 +64,31 @@ public class Player {
         }
     };
     
+    static MouseListener clickControl = new MouseListener() {
+
+        @Override
+        public void mouseClicked(MouseEvent me) {
+            
+        }
+
+        @Override
+        public void mousePressed(MouseEvent me) {
+            SpaceShooter.bullets.add(new Projectile(x, y, Math.atan2(x - mouseX, y - mouseY)));
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent me) {
+            
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent me) {
+            
+        }
+
+        @Override
+        public void mouseExited(MouseEvent me) {
+            
+        }
+    };
 }

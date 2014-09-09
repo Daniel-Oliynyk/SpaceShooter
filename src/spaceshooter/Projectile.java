@@ -1,10 +1,13 @@
 package spaceshooter;
 
 public class Projectile {
-    int x, y;
+    static int x, y;
+    static double angle;
 
-    public Projectile(int x, int y, double angle) {
-        
+    public Projectile(int xp, int yp, double aimAngle) {
+        x = xp;
+        y = yp;
+        angle = aimAngle;
     }
     
 }

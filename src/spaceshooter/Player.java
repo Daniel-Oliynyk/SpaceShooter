@@ -1,5 +1,6 @@
 package spaceshooter;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -15,7 +16,7 @@ public class Player {
     static final int SPEED = 3, SIZE = 40;
     static int x = 300, y = 300, mouseX, mouseY;
     static HashSet<Integer> keys = new HashSet<>();
-    BufferedImage ship;
+    static BufferedImage ship;
 
     void drawPlayer() {
         if (keys.contains(KeyEvent.VK_A) && x - SPEED > 0) x -= SPEED;
@@ -54,6 +55,9 @@ public class Player {
         public void mouseDragged(MouseEvent me) {
             mouseX = me.getX();
             mouseY = me.getY();
+            Graphics2D painter = screen.createGraphics();
+            painter.setColor(Color.YELLOW);
+            painter.drawLine(x + SIZE / 2, y + SIZE / 2, mouseX, mouseY);
         }
 
         @Override

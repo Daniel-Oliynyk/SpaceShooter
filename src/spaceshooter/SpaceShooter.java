@@ -24,11 +24,11 @@ public class SpaceShooter {
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Space Shooter Game");
+        frame.addKeyListener(Player.keyControl);
         frame.setResizable(false);
         
         JPanel panel = new JPanel();
         panel.add(new JLabel(new ImageIcon(screen)));
-        panel.addKeyListener(Player.keyControl);
         panel.addMouseMotionListener(Player.mouseControl);
         frame.add(panel);
         frame.setVisible(true);

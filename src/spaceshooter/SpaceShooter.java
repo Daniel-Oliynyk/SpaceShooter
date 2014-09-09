@@ -39,7 +39,7 @@ public class SpaceShooter {
         frame.setLocationRelativeTo(null);
         
         try {
-            Player.ship = ImageIO.read(new File("E:/Programming/SpaceShooter/src/spaceshooter/img/ship.png"));
+            Player.ship = ImageIO.read(new File("E:/Programming/Java/SpaceShooter/src/spaceshooter/img/ship.png"));
         }
         catch (IOException ex) {
             System.err.println(ex);

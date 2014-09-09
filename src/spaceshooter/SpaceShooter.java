@@ -3,6 +3,9 @@ package spaceshooter;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -10,7 +13,7 @@ import javax.swing.JPanel;
 
 public class SpaceShooter {
     
-    static final int FPS = 60, WIDTH = 600, HEIGHT = 600;
+    static final int FPS = 60, WIDTH = 800, HEIGHT = 800;
     static BufferedImage screen = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB);
     static double timeStart = System.nanoTime();
     
@@ -31,12 +34,19 @@ public class SpaceShooter {
         frame.setSize(WIDTH + 7, HEIGHT + 34);
         frame.setLocationRelativeTo(null);
         
+        try {
+            player.ship = ImageIO.read(new File("E:/Programming/Java/SpaceShooter/src/spaceshooter/img/ship.png"));
+        }
+        catch (IOException ex) {
+            System.err.println(ex);
+        }
+        
         while (true) {
             if (System.nanoTime() - timeStart > 1000000000 / FPS) {
                 timeStart = System.nanoTime();
                 
                 Graphics2D painter = screen.createGraphics();
-                painter.setColor(Color.BLACK);
+                painter.setColor(new Color(0x0b1037));
                 painter.fillRect(0, 0, screen.getWidth(), screen.getHeight());
                 
                 map.drawStars();

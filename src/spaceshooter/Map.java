@@ -6,7 +6,7 @@ import java.util.Random;
 import static spaceshooter.SpaceShooter.painter;
 
 public class Map {
-    final int STAR_AMOUNT = 300, UPDATE_AMOUNT = 1;
+    final int STAR_AMOUNT = 300, UPDATE_AMOUNT = 1, ASTEROIDS = 120;
     Random ran = new Random();
     Point2D.Double[] star = new Point2D.Double[STAR_AMOUNT];
 
@@ -29,5 +29,11 @@ public class Map {
             painter.fillOval((int) star[i].x, (int) star[i].y, 3, 3);
         }
         star = temp;
+        
+        int option = ran.nextInt(4);
+        if (ran.nextInt(ASTEROIDS) == 3 && option == 0) SpaceShooter.asteroids.add(new Asteroid(0, ran.nextInt(SpaceShooter.HEIGHT), Math.toRadians(ran.nextInt(180) + 270), ran.nextInt(5) + 2));
+        else if (ran.nextInt(ASTEROIDS) == 3 && option == 1) SpaceShooter.asteroids.add(new Asteroid(ran.nextInt(SpaceShooter.WIDTH), 0, Math.toRadians(ran.nextInt(180) + 0), ran.nextInt(5) + 2));
+        else if (ran.nextInt(ASTEROIDS) == 3 && option == 2) SpaceShooter.asteroids.add(new Asteroid(SpaceShooter.WIDTH, ran.nextInt(SpaceShooter.HEIGHT), Math.toRadians(ran.nextInt(180) + 90), ran.nextInt(5) + 2));
+        else if (ran.nextInt(ASTEROIDS) == 3 && option == 3) SpaceShooter.asteroids.add(new Asteroid(ran.nextInt(SpaceShooter.WIDTH), SpaceShooter.HEIGHT, Math.toRadians(ran.nextInt(180) + 180), ran.nextInt(5) + 2));
     }
 }

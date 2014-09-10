@@ -6,7 +6,7 @@ import static spaceshooter.SpaceShooter.painter;
 public class Projectile {
     double x, y;
     final double ANGLE;
-    final int SPEED = 5;
+    final int SPEED = 10;
     boolean remove = false;
 
     public Projectile(int xp, int yp, double aimAngle) {

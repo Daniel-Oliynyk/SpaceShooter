@@ -59,7 +59,8 @@ public class Player {
 
         @Override
         public void mousePressed(MouseEvent me) {
-            SpaceShooter.bullets.add(new Projectile(x + (SIZE / 2), y + (SIZE / 2), Math.atan2(mouseY - (y + (SIZE / 2)), mouseX - (x + (SIZE / 2)))));
+            if (me.getButton() == MouseEvent.BUTTON1) SpaceShooter.bullets.add(new Projectile(x + (SIZE / 2),
+                    y + (SIZE / 2), Math.atan2(mouseY - (y + (SIZE / 2)), mouseX - (x + (SIZE / 2)))));
         }
     };
 }

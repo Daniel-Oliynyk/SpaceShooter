@@ -16,6 +16,7 @@ public class SpaceShooter {
     static Graphics2D painter = screen.createGraphics();
     static double timeStart = System.nanoTime();
     static ArrayList<Projectile> bullets = new ArrayList<>();
+    static ArrayList<Asteroid> asteroids = new ArrayList<>();
     
     static Player player = new Player();
     static Map map = new Map();
@@ -44,12 +45,19 @@ public class SpaceShooter {
                 painter.setColor(new Color(0x0b1037));
                 painter.fillRect(0, 0, screen.getWidth(), screen.getHeight());
                 
-                ArrayList<Projectile> temp = new ArrayList<>();
+                ArrayList<Projectile> tempBul = new ArrayList<>();
                 for (Projectile bullet : bullets) {
                     bullet.drawBullet();
-                    if (!bullet.remove) temp.add(bullet);
+                    if (!bullet.remove) tempBul.add(bullet);
                 }
-                bullets = temp;
+                bullets = tempBul;
+                
+                ArrayList<Asteroid> tempAst = new ArrayList<>();
+                for (Asteroid asteroid : asteroids) {
+                    asteroid.drawAsteroid();
+                    if (!asteroid.remove) tempAst.add(asteroid);
+                }
+                asteroids = tempAst;
                 
                 map.drawStars();
                 player.drawPlayer();

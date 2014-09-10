@@ -1,27 +1,30 @@
 package spaceshooter;
 
-import java.awt.Color;
-import java.awt.Graphics2D;
-import static spaceshooter.SpaceShooter.screen;
+import java.awt.geom.AffineTransform;
+import static spaceshooter.SpaceShooter.painter;
 
 public class Projectile {
-    static int x, y;
-    static double angle;
-    static boolean isDead = false;
+    double x, y;
+    final double ANGLE;
+    final int SPEED = 5;
+    boolean remove = false;
 
     public Projectile(int xp, int yp, double aimAngle) {
         x = xp;
         y = yp;
-        angle = aimAngle;
+        ANGLE = aimAngle;
     }
     
     void drawBullet() {
-        x++;
-        y++;
-        if (x > 600) isDead = true;
-        Graphics2D painter = screen.createGraphics();
-        painter.setColor(Color.YELLOW);
-        painter.fillOval(x - 5, y - 5, 10, 10);
+        x = x + Math.cos(ANGLE) * SPEED;
+        y = y + Math.sin(ANGLE) * SPEED;
+        if (x > SpaceShooter.HEIGHT || y > SpaceShooter.WIDTH || x < 0 || y < 0) remove = true;
+        
+        
+        AffineTransform tran = new AffineTransform();
+        tran.translate(x - 5, y - 5);
+        tran.rotate(ANGLE - Math.PI / 2, 5, 5);
+        painter.drawImage(ImageManager.MISSILE, tran, null);
     }
     
 }

@@ -12,7 +12,7 @@ import static spaceshooter.SpaceShooter.painter;
 public class Player {
     
     static final int SPEED = 3, SIZE = 40;
-    static int x = 300, y = 300, mouseX, mouseY;
+    static int x = SpaceShooter.WIDTH / 2 - (SIZE / 2), y = SpaceShooter.HEIGHT / 2 - (SIZE / 2), mouseX, mouseY;
     static HashSet<Integer> keys = new HashSet<>();
 
     void drawPlayer() {

@@ -4,9 +4,10 @@ import java.awt.Color;
 import java.awt.geom.Point2D;
 import java.util.Random;
 import static spaceshooter.SpaceShooter.painter;
+import static spaceshooter.SpaceShooter.screen;
 
 public class Map {
-    final int STAR_AMOUNT = 300, UPDATE_AMOUNT = 1, ASTEROIDS = 120;
+    final int STAR_AMOUNT = 300, UPDATE_AMOUNT = 1, ASTEROIDS = 60;
     Random ran = new Random();
     Point2D.Double[] star = new Point2D.Double[STAR_AMOUNT];
 
@@ -17,6 +18,9 @@ public class Map {
     }
     
     void drawStars() {
+        painter.setColor(new Color(0x0b1037));
+        painter.fillRect(0, 0, screen.getWidth(), screen.getHeight());
+        
         painter.setColor(Color.WHITE);
         Point2D.Double[] temp = new Point2D.Double[STAR_AMOUNT];
         

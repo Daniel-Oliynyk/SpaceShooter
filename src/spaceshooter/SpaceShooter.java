@@ -42,8 +42,7 @@ public class SpaceShooter {
             if (System.nanoTime() - timeStart > 1000000000 / FPS) {
                 timeStart = System.nanoTime();
                 
-                painter.setColor(new Color(0x0b1037));
-                painter.fillRect(0, 0, screen.getWidth(), screen.getHeight());
+                map.drawStars();
                 
                 ArrayList<Projectile> tempBul = new ArrayList<>();
                 for (Projectile bullet : bullets) {
@@ -59,7 +58,6 @@ public class SpaceShooter {
                 }
                 asteroids = tempAst;
                 
-                map.drawStars();
                 player.drawPlayer();
                 frame.repaint();
             }

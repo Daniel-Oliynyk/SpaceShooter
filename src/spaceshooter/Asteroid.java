@@ -1,6 +1,5 @@
 package spaceshooter;
 
-import java.awt.Color;
 import static spaceshooter.SpaceShooter.painter;
 
 public class Asteroid {
@@ -24,8 +23,7 @@ public class Asteroid {
 //        AffineTransform tran = new AffineTransform();
 //        tran.translate(x - 5, y - 5);
 //        tran.rotate(ANGLE - Math.PI / 2, 5, 5);
-        painter.setColor(Color.GRAY);
-        painter.fillOval((int) x, (int) y, 80, 80);
+        painter.drawImage(ImageManager.ASTEROID, (int) x, (int) y, null);
     }
     
 }

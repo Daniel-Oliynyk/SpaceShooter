@@ -20,7 +20,6 @@ public class Projectile {
         y = y + Math.sin(ANGLE) * SPEED;
         if (x > HEIGHT || y > WIDTH || x < 0 - SIZE || y < 0 - SIZE) remove = true;
         
-        
         AffineTransform tran = new AffineTransform();
         tran.translate(x - SIZE / 2, y - SIZE / 2);
         tran.rotate(ANGLE - Math.PI * 1.5, SIZE / 2, SIZE / 2);

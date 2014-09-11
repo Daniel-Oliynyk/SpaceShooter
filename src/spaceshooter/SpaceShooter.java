@@ -1,6 +1,7 @@
 package spaceshooter;
 
 import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Random;
@@ -14,7 +15,6 @@ public class SpaceShooter {
     static final int FPS = 60, WIDTH = 800, HEIGHT = 800;
     static final BufferedImage screen = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB);
     static Graphics2D painter = screen.createGraphics();
-    static double timeStart = System.nanoTime();
     static Random ran = new Random();
     
     static ArrayList<Projectile> bullets = new ArrayList<>();
@@ -40,6 +40,7 @@ public class SpaceShooter {
         frame.setSize(WIDTH + 7, HEIGHT + 34);
         frame.setLocationRelativeTo(null);
         
+        double timeStart = System.nanoTime();
         while (true) {
             if (System.nanoTime() - timeStart > 1000000000 / FPS) {
                 timeStart = System.nanoTime();

@@ -7,19 +7,19 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.geom.AffineTransform;
 import java.util.HashSet;
-import static spaceshooter.SpaceShooter.painter;
+import static spaceshooter.SpaceShooter.*;
 
 public class Player {
     
     static final int SPEED = 3, SIZE = 40;
-    static int x = SpaceShooter.WIDTH / 2 - (SIZE / 2), y = SpaceShooter.HEIGHT / 2 - (SIZE / 2), mouseX, mouseY;
+    static int x = WIDTH / 2 - (SIZE / 2), y = HEIGHT / 2 - (SIZE / 2), mouseX, mouseY;
     static HashSet<Integer> keys = new HashSet<>();
 
     void drawPlayer() {
         if (keys.contains(KeyEvent.VK_A) && x - SPEED > 0) x -= SPEED;
-        if (keys.contains(KeyEvent.VK_D) && x + SIZE + SPEED < SpaceShooter.WIDTH) x += SPEED;
+        if (keys.contains(KeyEvent.VK_D) && x + SIZE + SPEED < WIDTH) x += SPEED;
         if (keys.contains(KeyEvent.VK_W) && y - SPEED > 0) y -= SPEED;
-        if (keys.contains(KeyEvent.VK_S) && y + SIZE + SPEED < SpaceShooter.HEIGHT) y += SPEED;
+        if (keys.contains(KeyEvent.VK_S) && y + SIZE + SPEED < HEIGHT) y += SPEED;
         
         AffineTransform tran = new AffineTransform();
         tran.translate(x, y);
@@ -59,7 +59,7 @@ public class Player {
 
         @Override
         public void mousePressed(MouseEvent me) {
-            if (me.getButton() == MouseEvent.BUTTON1) SpaceShooter.bullets.add(new Projectile(x + (SIZE / 2),
+            if (me.getButton() == MouseEvent.BUTTON1) bullets.add(new Projectile(x + (SIZE / 2),
                     y + (SIZE / 2), Math.atan2(mouseY - (y + (SIZE / 2)), mouseX - (x + (SIZE / 2)))));
         }
     };

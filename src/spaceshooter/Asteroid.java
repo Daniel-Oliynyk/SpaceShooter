@@ -1,11 +1,11 @@
 package spaceshooter;
 
-import static spaceshooter.SpaceShooter.painter;
+import static spaceshooter.SpaceShooter.*;
 
 public class Asteroid {
     double x, y;
     final double ANGLE;
-    final int SPEED;
+    final int SPEED, TYPE;
     boolean remove = false;
 
     public Asteroid(int xp, int yp, double aimAngle, int speed) {
@@ -13,17 +13,15 @@ public class Asteroid {
         y = yp;
         ANGLE = aimAngle;
         SPEED = speed;
+        TYPE = ran.nextInt(ImageManager.ASTEROID_COUNT);
     }
     
     void drawAsteroid() {
         x = x + Math.cos(ANGLE) * SPEED;
         y = y + Math.sin(ANGLE) * SPEED;
-        if (x > SpaceShooter.HEIGHT || y > SpaceShooter.WIDTH || x < 0 || y < 0) remove = true;
+        if (x > HEIGHT || y > WIDTH || x < 0 - 80 || y < 0 - 80) remove = true;
         
-//        AffineTransform tran = new AffineTransform();
-//        tran.translate(x - 5, y - 5);
-//        tran.rotate(ANGLE - Math.PI / 2, 5, 5);
-        painter.drawImage(ImageManager.ASTEROID, (int) x, (int) y, null);
+        painter.drawImage(ImageManager.ASTEROID[TYPE], (int) x, (int) y, null);
     }
     
 }

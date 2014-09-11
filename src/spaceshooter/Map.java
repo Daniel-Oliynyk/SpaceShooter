@@ -2,18 +2,15 @@ package spaceshooter;
 
 import java.awt.Color;
 import java.awt.geom.Point2D;
-import java.util.Random;
-import static spaceshooter.SpaceShooter.painter;
-import static spaceshooter.SpaceShooter.screen;
+import static spaceshooter.SpaceShooter.*;
 
 public class Map {
     final int STAR_AMOUNT = 300, UPDATE_AMOUNT = 1, ASTEROIDS = 60;
-    Random ran = new Random();
     Point2D.Double[] star = new Point2D.Double[STAR_AMOUNT];
 
     public Map() {
         for (int i = 0; i < STAR_AMOUNT; i++) {
-            star[i] = new Point2D.Double(ran.nextInt(SpaceShooter.WIDTH), ran.nextInt(SpaceShooter.HEIGHT));
+            star[i] = new Point2D.Double(ran.nextInt(WIDTH), ran.nextInt(HEIGHT));
         }
     }
     
@@ -25,7 +22,7 @@ public class Map {
         Point2D.Double[] temp = new Point2D.Double[STAR_AMOUNT];
         
         for (int i = 0; i < UPDATE_AMOUNT; i++) {
-            temp[i] = new Point2D.Double(ran.nextInt(SpaceShooter.WIDTH), ran.nextInt(SpaceShooter.HEIGHT));
+            temp[i] = new Point2D.Double(ran.nextInt(WIDTH), ran.nextInt(HEIGHT));
         }
         
         for (int i = 0; i < STAR_AMOUNT; i++) {
@@ -35,9 +32,9 @@ public class Map {
         star = temp;
         
         int option = ran.nextInt(4);
-        if (ran.nextInt(ASTEROIDS) == 3 && option == 0) SpaceShooter.asteroids.add(new Asteroid(0, ran.nextInt(SpaceShooter.HEIGHT), Math.toRadians(ran.nextInt(180) + 270), ran.nextInt(5) + 2));
-        else if (ran.nextInt(ASTEROIDS) == 3 && option == 1) SpaceShooter.asteroids.add(new Asteroid(ran.nextInt(SpaceShooter.WIDTH), 0, Math.toRadians(ran.nextInt(180) + 0), ran.nextInt(5) + 2));
-        else if (ran.nextInt(ASTEROIDS) == 3 && option == 2) SpaceShooter.asteroids.add(new Asteroid(SpaceShooter.WIDTH, ran.nextInt(SpaceShooter.HEIGHT), Math.toRadians(ran.nextInt(180) + 90), ran.nextInt(5) + 2));
-        else if (ran.nextInt(ASTEROIDS) == 3 && option == 3) SpaceShooter.asteroids.add(new Asteroid(ran.nextInt(SpaceShooter.WIDTH), SpaceShooter.HEIGHT, Math.toRadians(ran.nextInt(180) + 180), ran.nextInt(5) + 2));
+        if (ran.nextInt(ASTEROIDS) == 3 && option == 0) asteroids.add(new Asteroid(-80, ran.nextInt(HEIGHT), Math.toRadians(ran.nextInt(180) + 270), ran.nextInt(5) + 2));
+        else if (ran.nextInt(ASTEROIDS) == 3 && option == 1) asteroids.add(new Asteroid(ran.nextInt(WIDTH), -80, Math.toRadians(ran.nextInt(180) + 0), ran.nextInt(5) + 2));
+        else if (ran.nextInt(ASTEROIDS) == 3 && option == 2) asteroids.add(new Asteroid(WIDTH, ran.nextInt(HEIGHT), Math.toRadians(ran.nextInt(180) + 90), ran.nextInt(5) + 2));
+        else if (ran.nextInt(ASTEROIDS) == 3 && option == 3) asteroids.add(new Asteroid(ran.nextInt(WIDTH), HEIGHT, Math.toRadians(ran.nextInt(180) + 180), ran.nextInt(5) + 2));
     }
 }

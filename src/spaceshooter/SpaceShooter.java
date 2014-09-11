@@ -1,9 +1,9 @@
 package spaceshooter;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Random;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -15,6 +15,8 @@ public class SpaceShooter {
     static final BufferedImage screen = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB);
     static Graphics2D painter = screen.createGraphics();
     static double timeStart = System.nanoTime();
+    static Random ran = new Random();
+    
     static ArrayList<Projectile> bullets = new ArrayList<>();
     static ArrayList<Asteroid> asteroids = new ArrayList<>();
     

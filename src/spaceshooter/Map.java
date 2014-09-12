@@ -5,7 +5,7 @@ import java.awt.geom.Point2D;
 import static spaceshooter.SpaceShooter.*;
 
 public class Map {
-    final int STAR_AMOUNT = 300, UPDATE_AMOUNT = 1, ASTEROIDS = 60;
+    final int STAR_AMOUNT = 300, UPDATE_AMOUNT = 1, ASTEROIDS = 30;
     Point2D.Double[] star = new Point2D.Double[STAR_AMOUNT];
 
     public Map() {
@@ -14,7 +14,7 @@ public class Map {
         }
     }
     
-    void drawStars() {
+    void drawMap() {
         painter.setColor(new Color(0x0b1037));
         painter.fillRect(0, 0, screen.getWidth(), screen.getHeight());
         

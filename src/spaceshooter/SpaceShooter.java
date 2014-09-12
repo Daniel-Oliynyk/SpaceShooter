@@ -1,9 +1,9 @@
 package spaceshooter;
 
 import java.awt.Graphics2D;
-import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -44,28 +44,24 @@ public class SpaceShooter {
         while (true) {
             if (System.nanoTime() - timeStart > 1000000000 / FPS) {
                 timeStart = System.nanoTime();
+                map.drawMap();
                 
-                map.drawStars();
-                
-                ArrayList<Projectile> tempBul = new ArrayList<>();
-                for (Projectile bullet : bullets) {
-                    bullet.drawBullet();
-                    if (!bullet.remove) tempBul.add(bullet);
-                }
-                bullets = tempBul;
-                
-                ArrayList<Asteroid> tempAst = new ArrayList<>();
-                for (Asteroid asteroid : asteroids) {
+                for (Iterator<Asteroid> it = asteroids.iterator(); it.hasNext();) {
+                    Asteroid asteroid = it.next();
                     asteroid.drawAsteroid();
-                    if (!asteroid.remove) tempAst.add(asteroid);
+                    if (asteroid.remove) it.remove();
                 }
-                asteroids = tempAst;
+                
+                for (Iterator<Projectile> it = bullets.iterator(); it.hasNext();) {
+                    Projectile bullet = it.next();
+                    bullet.drawBullet();
+                    if (bullet.remove) it.remove();
+                }
                 
                 player.drawPlayer();
                 frame.repaint();
             }
         }
-        
     }
     
 }

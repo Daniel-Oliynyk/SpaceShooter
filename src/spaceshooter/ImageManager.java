@@ -16,8 +16,8 @@ public class ImageManager {
             SHIP = ImageIO.read(SpaceShooter.class.getResourceAsStream("img/ship.png"));
             MISSILE = ImageIO.read(SpaceShooter.class.getResourceAsStream("img/missile.png"));
             
-            for (int i = 0; i < ASTEROID_COUNT; i++) ASTEROID[i] = ImageIO.read(SpaceShooter.class.getResourceAsStream("img/asteroid" + i + ".png"));
-            for (int i = 0; i < EXPLOSION_SPRITES; i++) EXPLOSION[i] = ImageIO.read(SpaceShooter.class.getResourceAsStream("img/explosion" + i + ".png"));
+            for (int i = 0; i < ASTEROID_COUNT; i++) ASTEROID[i] = ImageIO.read(SpaceShooter.class.getResourceAsStream("img/asteroids/asteroid" + i + ".png"));
+            for (int i = 0; i < EXPLOSION_SPRITES; i++) EXPLOSION[i] = ImageIO.read(SpaceShooter.class.getResourceAsStream("img/explosions/explosion" + i + ".png"));
         }
         catch (IOException ex) {
             System.err.println(ex);

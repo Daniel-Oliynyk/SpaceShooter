@@ -25,11 +25,11 @@ public class Projectile {
         painter.drawImage(ImageManager.MISSILE, tran, null);
 
         for (Asteroid asteroid : asteroids) {
-            if (!asteroid.remove && x + SIZE > asteroid.x && y + SIZE > asteroid.y
+            if (asteroid.health > 0 && x + SIZE > asteroid.x && y + SIZE > asteroid.y
                     && x < asteroid.x + asteroid.SIZE && y < asteroid.y + asteroid.SIZE) {
-                asteroid.remove = true;
+                asteroid.takeDamage();
+                if (asteroid.health > 0) explosions.add(new Explosion((int) x, (int) y, 2, 1));
                 remove = true;
-                explosions.add(new Explosion((int) asteroid.x, (int) asteroid.y, 2, 2));
                 break;
             }
         }

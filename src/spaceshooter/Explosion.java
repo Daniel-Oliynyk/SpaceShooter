@@ -23,7 +23,7 @@ public class Explosion {
         if (SCALE == 1) painter.drawImage(ImageManager.EXPLOSION[index], x, y, null);
         else {
             Image scaledImage = ImageManager.EXPLOSION[index];
-            scaledImage = scaledImage.getScaledInstance(40 * SCALE, 40 * SCALE, Image.SCALE_DEFAULT);
+            scaledImage = scaledImage.getScaledInstance(20 * SCALE, 20 * SCALE, Image.SCALE_DEFAULT);
             painter.drawImage(scaledImage, x, y, null);
         }
     }

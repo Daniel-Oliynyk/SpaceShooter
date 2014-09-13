@@ -50,7 +50,7 @@ public class SpaceShooter {
                 for (Iterator<Asteroid> it = asteroids.iterator(); it.hasNext();) {
                     Asteroid asteroid = it.next();
                     asteroid.drawAsteroid();
-                    if (asteroid.remove) it.remove();
+                    if (asteroid.health < 1) it.remove();
                 }
                 for (Iterator<Projectile> it = bullets.iterator(); it.hasNext();) {
                     Projectile bullet = it.next();

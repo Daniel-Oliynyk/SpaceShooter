@@ -5,7 +5,7 @@ import java.awt.geom.Point2D;
 import static spaceshooter.SpaceShooter.*;
 
 public class Map {
-    final int STAR_AMOUNT = 300, UPDATE_AMOUNT = 1, ASTEROIDS = 10;
+    final int STAR_AMOUNT = 300, UPDATE_AMOUNT = 1, ASTEROIDS = 120;
     Point2D.Double[] star = new Point2D.Double[STAR_AMOUNT];
 
     public Map() {
@@ -31,14 +31,16 @@ public class Map {
         }
         star = temp;
         
-        int option = ran.nextInt(4);
-        if (ran.nextInt(ASTEROIDS) == 1 && option == 0) asteroids.add(new Asteroid(-80, ran.nextInt(HEIGHT),
-                Math.toRadians(ran.nextInt(180) + 270), ran.nextInt(5) + 2));
-        else if (ran.nextInt(ASTEROIDS) == 1 && option == 1) asteroids.add(new Asteroid(ran.nextInt(WIDTH), -80,
-                Math.toRadians(ran.nextInt(180) + 0), ran.nextInt(5) + 2));
-        else if (ran.nextInt(ASTEROIDS) == 1 && option == 2) asteroids.add(new Asteroid(WIDTH, ran.nextInt(HEIGHT),
-                Math.toRadians(ran.nextInt(180) + 90), ran.nextInt(5) + 2));
-        else if (ran.nextInt(ASTEROIDS) == 1 && option == 3) asteroids.add(new Asteroid(ran.nextInt(WIDTH), HEIGHT,
-                Math.toRadians(ran.nextInt(180) + 180), ran.nextInt(5) + 2));
+        if (ran.nextInt(ASTEROIDS) == 1) {
+            int option = ran.nextInt(4);
+            int an = ran.nextInt(180);
+            int sp = ran.nextInt(4) + 1;
+            switch (option) {
+                case 0: asteroids.add(new Asteroid(-80, ran.nextInt(HEIGHT), Math.toRadians(an + 270), sp, false));
+                case 1: asteroids.add(new Asteroid(ran.nextInt(WIDTH), -80, Math.toRadians(an + 0), sp, false));
+                case 2: asteroids.add(new Asteroid(WIDTH, ran.nextInt(HEIGHT), Math.toRadians(an + 90), sp, false));
+                case 3: asteroids.add(new Asteroid(ran.nextInt(WIDTH), HEIGHT, Math.toRadians(an + 180), sp, false));
+            }
+        }
     }
 }

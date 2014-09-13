@@ -14,6 +14,7 @@ public class Player {
     static final int SPEED = 3, SIZE = 40;
     static int x = WIDTH / 2 - (SIZE / 2), y = HEIGHT / 2 - (SIZE / 2), mouseX, mouseY;
     static HashSet<Integer> keys = new HashSet<>();
+    static boolean collide = false;
 
     void drawPlayer() {
         if (keys.contains(KeyEvent.VK_A) && x - SPEED > 0) x -= SPEED;

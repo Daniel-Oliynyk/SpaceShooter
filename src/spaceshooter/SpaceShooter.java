@@ -19,6 +19,7 @@ public class SpaceShooter {
     
     static ArrayList<Projectile> bullets = new ArrayList<>();
     static ArrayList<Asteroid> asteroids = new ArrayList<>();
+    static ArrayList<Explosion> explosions = new ArrayList<>();
     
     static Player player = new Player();
     static Map map = new Map();
@@ -51,14 +52,18 @@ public class SpaceShooter {
                     asteroid.drawAsteroid();
                     if (asteroid.remove) it.remove();
                 }
-                
                 for (Iterator<Projectile> it = bullets.iterator(); it.hasNext();) {
                     Projectile bullet = it.next();
                     bullet.drawBullet();
                     if (bullet.remove) it.remove();
                 }
-                
                 player.drawPlayer();
+                for (Iterator<Explosion> it = explosions.iterator(); it.hasNext();) {
+                    Explosion explosion = it.next();
+                    explosion.drawExplosion();
+                    if (explosion.remove) it.remove();
+                }
+                
                 frame.repaint();
             }
         }

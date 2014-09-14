@@ -21,14 +21,21 @@ public class Projectile {
 
         AffineTransform tran = new AffineTransform();
         tran.translate(x, y);
-        tran.rotate(ANGLE - Math.PI * 1.5, SIZE / 2, SIZE / 2);
+        tran.rotate(ANGLE, SIZE / 2, SIZE / 2);
         painter.drawImage(ImageManager.MISSILE, tran, null);
 
-        for (Asteroid asteroid : asteroids) {
-            if (asteroid.health > 0 && x + SIZE > asteroid.x && y + SIZE > asteroid.y
-                    && x < asteroid.x + asteroid.SIZE && y < asteroid.y + asteroid.SIZE) {
-                asteroid.takeDamage();
-                if (asteroid.health > 0) explosions.add(new Explosion((int) x, (int) y, 2, 1));
+        for (Debris debris : debrisSprites) {
+            if (debris.health > 0 && x + SIZE > debris.x && y + SIZE > debris.y
+                    && x < debris.x + debris.SIZE && y < debris.y + debris.SIZE) {
+                debris.health--;
+                if (debris.health == 0) {
+                    if (debris.SIZE == 80) explosionSprites.add(new Explosion((int) debris.x, (int) debris.y,
+                            2, (int) (debris.SIZE * 0.05), Explosion.ROCK_FRAGMENTS));
+                    else if (debris.SIZE == 20) explosionSprites.add(new Explosion((int) x, (int) y,
+                            2, (int) (SIZE * 0.05), Explosion.NO_FRAGMENTS));
+                }
+                
+                if (debris.health > 0) explosionSprites.add(new Explosion((int) x, (int) y, 2, 1, Explosion.NO_FRAGMENTS));
                 remove = true;
                 break;
             }

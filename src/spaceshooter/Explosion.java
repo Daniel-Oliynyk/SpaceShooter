@@ -4,21 +4,30 @@ import java.awt.Image;
 import static spaceshooter.SpaceShooter.*;
 
 public class Explosion {
-    final int LENGTH_MULTIPLIER, SCALE;
-    int countDown, x, y;
+    static final int NO_FRAGMENTS = 0, ROCK_FRAGMENTS = 1, METAL_FRAGMENTS = 2;
+    final int LENGTH_MULTIPLIER, SCALE, TYPE;
+    int x, y, countDown;
     boolean remove;
 
-    public Explosion(int xp, int yp, int time, int size) {
+    public Explosion(int xp, int yp, int time, int size, int fragments) {
         LENGTH_MULTIPLIER = time;
         SCALE = size;
+        TYPE = fragments;
         x = xp;
         y = yp;
         countDown = ImageManager.EXPLOSION_SPRITES * LENGTH_MULTIPLIER;
+        
+        if (TYPE != NO_FRAGMENTS) {
+            int pieces = ran.nextInt(6) + 4;
+            for (int i = 0; i < pieces; i++)
+                debrisSprites.add(new Debris(x + (SCALE * 10), y + (SCALE * 10), 2 * Math.PI / pieces * i, ran.nextInt(2) + 1, TYPE));
+        }
     }
     
     void drawExplosion() {
         countDown--;
         if (countDown < 0) remove = true;
+        
         int index = ImageManager.EXPLOSION_SPRITES - 1 - (int) (countDown / LENGTH_MULTIPLIER);
         if (SCALE == 1) painter.drawImage(ImageManager.EXPLOSION[index], x, y, null);
         else {

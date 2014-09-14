@@ -17,9 +17,9 @@ public class SpaceShooter {
     static Graphics2D painter = screen.createGraphics();
     static Random ran = new Random();
     
-    static ArrayList<Projectile> bullets = new ArrayList<>();
-    static ArrayList<Asteroid> asteroids = new ArrayList<>();
-    static ArrayList<Explosion> explosions = new ArrayList<>();
+    static ArrayList<Projectile> bulletSprites = new ArrayList<>();
+    static ArrayList<Debris> debrisSprites = new ArrayList<>();
+    static ArrayList<Explosion> explosionSprites = new ArrayList<>();
     
     static Player player = new Player();
     static Map map = new Map();
@@ -47,18 +47,18 @@ public class SpaceShooter {
                 timeStart = System.nanoTime();
                 map.drawMap();
                 
-                for (Iterator<Asteroid> it = asteroids.iterator(); it.hasNext();) {
-                    Asteroid asteroid = it.next();
-                    asteroid.drawAsteroid();
-                    if (asteroid.health < 1) it.remove();
+                for (Iterator<Debris> it = debrisSprites.iterator(); it.hasNext();) {
+                    Debris debris = it.next();
+                    debris.drawDebris();
+                    if (debris.health < 1) it.remove();
                 }
-                for (Iterator<Projectile> it = bullets.iterator(); it.hasNext();) {
+                for (Iterator<Projectile> it = bulletSprites.iterator(); it.hasNext();) {
                     Projectile bullet = it.next();
                     bullet.drawBullet();
                     if (bullet.remove) it.remove();
                 }
                 player.drawPlayer();
-                for (Iterator<Explosion> it = explosions.iterator(); it.hasNext();) {
+                for (Iterator<Explosion> it = explosionSprites.iterator(); it.hasNext();) {
                     Explosion explosion = it.next();
                     explosion.drawExplosion();
                     if (explosion.remove) it.remove();

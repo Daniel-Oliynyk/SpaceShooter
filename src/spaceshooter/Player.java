@@ -24,7 +24,7 @@ public class Player {
         
         AffineTransform tran = new AffineTransform();
         tran.translate(x, y);
-        tran.rotate(Math.atan2(mouseY - (y + SIZE / 2), mouseX - (x + SIZE / 2)) - Math.PI / 2, SIZE / 2, SIZE / 2);
+        tran.rotate(Math.atan2(mouseY - (y + SIZE / 2), mouseX - (x + SIZE / 2)), SIZE / 2, SIZE / 2);
         painter.drawImage(ImageManager.SHIP, tran, null);
     }
     
@@ -60,7 +60,7 @@ public class Player {
 
         @Override
         public void mousePressed(MouseEvent me) {
-            if (me.getButton() == MouseEvent.BUTTON1) bullets.add(new Projectile(x + (SIZE / 2) - 10,
+            if (me.getButton() == MouseEvent.BUTTON1) bulletSprites.add(new Projectile(x + (SIZE / 2) - 10,
                     y + (SIZE / 2) - 10, Math.atan2(mouseY - (y + (SIZE / 2)), mouseX - (x + (SIZE / 2)))));
         }
     };

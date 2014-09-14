@@ -5,7 +5,7 @@ import java.awt.geom.Point2D;
 import static spaceshooter.SpaceShooter.*;
 
 public class Map {
-    final int STAR_AMOUNT = 300, UPDATE_AMOUNT = 1, ASTEROIDS = 120;
+    final int STAR_AMOUNT = 300, UPDATE_AMOUNT = 1, ASTEROIDS = 20;
     Point2D.Double[] star = new Point2D.Double[STAR_AMOUNT];
 
     public Map() {
@@ -36,10 +36,10 @@ public class Map {
             int an = ran.nextInt(180);
             int sp = ran.nextInt(4) + 1;
             switch (option) {
-                case 0: asteroids.add(new Asteroid(-80, ran.nextInt(HEIGHT), Math.toRadians(an + 270), sp, false));
-                case 1: asteroids.add(new Asteroid(ran.nextInt(WIDTH), -80, Math.toRadians(an + 0), sp, false));
-                case 2: asteroids.add(new Asteroid(WIDTH, ran.nextInt(HEIGHT), Math.toRadians(an + 90), sp, false));
-                case 3: asteroids.add(new Asteroid(ran.nextInt(WIDTH), HEIGHT, Math.toRadians(an + 180), sp, false));
+                case 0: debrisSprites.add(new Debris(-80, ran.nextInt(HEIGHT), Math.toRadians(an + 270), sp, Debris.NON_FRAGMENT)); break;
+                case 1: debrisSprites.add(new Debris(ran.nextInt(WIDTH), -80, Math.toRadians(an + 0), sp, Debris.NON_FRAGMENT)); break;
+                case 2: debrisSprites.add(new Debris(WIDTH, ran.nextInt(HEIGHT), Math.toRadians(an + 90), sp, Debris.NON_FRAGMENT)); break;
+                case 3: debrisSprites.add(new Debris(ran.nextInt(WIDTH), HEIGHT, Math.toRadians(an + 180), sp, Debris.NON_FRAGMENT)); break;
             }
         }
     }

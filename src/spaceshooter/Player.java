@@ -60,8 +60,8 @@ public class Player {
 
         @Override
         public void mousePressed(MouseEvent me) {
-            if (me.getButton() == MouseEvent.BUTTON1) bulletSprites.add(new Projectile(x + (SIZE / 2) - 10,
-                    y + (SIZE / 2) - 10, Math.atan2(mouseY - (y + (SIZE / 2)), mouseX - (x + (SIZE / 2)))));
+            double angle = Math.atan2(mouseY - (y + (SIZE / 2)), mouseX - (x + (SIZE / 2)));
+            if (me.getButton() == MouseEvent.BUTTON1) bulletSprites.add(new Projectile(x + (SIZE / 2) - 10, y + (SIZE / 2) - 10, angle));
         }
     };
 }

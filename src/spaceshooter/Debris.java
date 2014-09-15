@@ -4,9 +4,9 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import static spaceshooter.SpaceShooter.*;
 
-public class Debris {
+public class Debris extends Sprite {
     static int NON_FRAGMENT = 0, ROCK_FRAGMENT = 1, METAL_FRAGMENT = 2;
-    double x, y, DIRECTION, ANGLE;
+    double DIRECTION, ANGLE;
     final int SPEED, ROTATION_SPEED, SIZE;
     final BufferedImage IMAGE;
     int health;
@@ -32,7 +32,8 @@ public class Debris {
         }
     }
     
-    void drawDebris() {
+    @Override
+    void update() {
         x = x + Math.cos(DIRECTION) * SPEED;
         y = y + Math.sin(DIRECTION) * SPEED;
         
@@ -42,11 +43,11 @@ public class Debris {
         painter.drawImage(IMAGE, tran, null);
         
         ANGLE = ANGLE + ((2 * Math.PI) / ROTATION_SPEED);
-        if (x > HEIGHT || y > WIDTH || x < 0 - SIZE || y < 0 - SIZE) health = 0;
-        if (health > 0 && Player.x + Player.SIZE > x && Player.x < x + SIZE && Player.y + Player.SIZE > y && Player.y < y + SIZE) {
+        if (x > HEIGHT || y > WIDTH || x < 0 - SIZE || y < 0 - SIZE) remove = true;
+        if (!remove && Player.x + Player.SIZE > x && Player.x < x + SIZE && Player.y + Player.SIZE > y && Player.y < y + SIZE) {
             explosionSprites.add(new Explosion((int) x, (int) y, 2, (int) (SIZE * 0.05), Explosion.NO_FRAGMENTS));
             if (!Player.collide) explosionSprites.add(new Explosion(Player.x, Player.y, 2, 2, Explosion.NO_FRAGMENTS));
-            health = 0;
+            remove = true;
             Player.collide = true;
         }
         else Player.collide = false;

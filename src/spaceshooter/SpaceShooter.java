@@ -17,8 +17,8 @@ public class SpaceShooter {
     static Graphics2D painter = screen.createGraphics();
     static Random ran = new Random();
     
-    static ArrayList<Projectile> bulletSprites = new ArrayList<>();
     static ArrayList<Debris> debrisSprites = new ArrayList<>();
+    static ArrayList<Projectile> bulletSprites = new ArrayList<>();
     static ArrayList<Explosion> explosionSprites = new ArrayList<>();
     
     static Player player = new Player();
@@ -46,27 +46,22 @@ public class SpaceShooter {
             if (System.nanoTime() - timeStart > 1000000000 / FPS) {
                 timeStart = System.nanoTime();
                 map.drawMap();
-                
-                for (Iterator<Debris> it = debrisSprites.iterator(); it.hasNext();) {
-                    Debris debris = it.next();
-                    debris.drawDebris();
-                    if (debris.health < 1) it.remove();
-                }
-                for (Iterator<Projectile> it = bulletSprites.iterator(); it.hasNext();) {
-                    Projectile bullet = it.next();
-                    bullet.drawBullet();
-                    if (bullet.remove) it.remove();
-                }
+                debrisSprites = updateSprite(debrisSprites);
+                bulletSprites = updateSprite(bulletSprites);
                 player.drawPlayer();
-                for (Iterator<Explosion> it = explosionSprites.iterator(); it.hasNext();) {
-                    Explosion explosion = it.next();
-                    explosion.drawExplosion();
-                    if (explosion.remove) it.remove();
-                }
-                
+                explosionSprites = updateSprite(explosionSprites);
                 frame.repaint();
             }
         }
+    }
+    
+    static ArrayList updateSprite(ArrayList list) {
+        for (Iterator<Sprite> it = list.iterator(); it.hasNext();) {
+            Sprite sprite = it.next();
+            sprite.update();
+            if (sprite.remove) it.remove();
+        }
+        return list;
     }
     
 }

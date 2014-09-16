@@ -18,7 +18,7 @@ public class Explosion extends Sprite {
         
         if (TYPE != NO_FRAGMENTS) {
             int pieces = ran.nextInt(6) + 4;
-            for (int i = 0; i < pieces; i++) debrisSprites.add(new Debris(x + (SCALE * 10), y + (SCALE * 10), 2 * Math.PI / pieces * i, ran.nextInt(2) + 1, TYPE));
+            for (int i = 0; i < pieces; i++) debrisBuffer.add(new Debris(x + (SCALE * 10), y + (SCALE * 10), 2 * Math.PI / pieces * i, ran.nextDouble() * 3, TYPE));
         }
     }
     

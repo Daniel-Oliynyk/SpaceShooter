@@ -15,7 +15,7 @@ public class Player {
     static int x = WIDTH / 2 - (SIZE / 2), y = HEIGHT / 2 - (SIZE / 2), mouseX, mouseY;
     static HashSet<Integer> keys = new HashSet<>();
     static boolean collide = false;
-
+    
     void drawPlayer() {
         if (keys.contains(KeyEvent.VK_A) && x - SPEED > 0) x -= SPEED;
         if (keys.contains(KeyEvent.VK_D) && x + SIZE + SPEED < WIDTH) x += SPEED;
@@ -61,7 +61,7 @@ public class Player {
         @Override
         public void mousePressed(MouseEvent me) {
             double angle = Math.atan2(mouseY - (y + (SIZE / 2)), mouseX - (x + (SIZE / 2)));
-            if (me.getButton() == MouseEvent.BUTTON1) bulletSprites.add(new Projectile(x + (SIZE / 2) - 10, y + (SIZE / 2) - 10, angle));
+            if (me.getButton() == MouseEvent.BUTTON1) bulletBuffer.add(new Projectile(x + (SIZE / 2) - 10, y + (SIZE / 2) - 10, angle));
         }
     };
 }

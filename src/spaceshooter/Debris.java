@@ -5,13 +5,13 @@ import java.awt.image.BufferedImage;
 import static spaceshooter.SpaceShooter.*;
 
 public class Debris extends Sprite {
-    static int NON_FRAGMENT = 0, ROCK_FRAGMENT = 1, METAL_FRAGMENT = 2;
-    double DIRECTION, ANGLE;
-    final int SPEED, ROTATION_SPEED, SIZE;
+    static int NON_FRAGMENT = 0, ROCK_FRAGMENT = 1, METAL_FRAGMENT = 2, INITIAL_SIZE = 80;
+    double SPEED, DIRECTION, ANGLE;
+    final int ROTATION_SPEED, SIZE;
     final BufferedImage IMAGE;
     int health;
 
-    public Debris(double xp, double yp, double angle, int speed, int type) {
+    public Debris(double xp, double yp, double angle, double speed, int type) {
         x = xp;
         y = yp;
         DIRECTION = angle;
@@ -34,8 +34,8 @@ public class Debris extends Sprite {
     
     @Override
     void update() {
-        x = x + Math.cos(DIRECTION) * SPEED;
-        y = y + Math.sin(DIRECTION) * SPEED;
+        x += Math.cos(DIRECTION) * SPEED;
+        y += Math.sin(DIRECTION) * SPEED;
         
         AffineTransform tran = new AffineTransform();
         tran.translate(x, y);
@@ -43,10 +43,10 @@ public class Debris extends Sprite {
         painter.drawImage(IMAGE, tran, null);
         
         ANGLE = ANGLE + ((2 * Math.PI) / ROTATION_SPEED);
-        if (x > HEIGHT || y > WIDTH || x < 0 - SIZE || y < 0 - SIZE) remove = true;
+        if (x > WIDTH || y > HEIGHT || x < 0 - SIZE || y < 0 - SIZE) remove = true;
         if (!remove && Player.x + Player.SIZE > x && Player.x < x + SIZE && Player.y + Player.SIZE > y && Player.y < y + SIZE) {
-            explosionSprites.add(new Explosion((int) x, (int) y, 2, (int) (SIZE * 0.05), Explosion.NO_FRAGMENTS));
-            if (!Player.collide) explosionSprites.add(new Explosion(Player.x, Player.y, 2, 2, Explosion.NO_FRAGMENTS));
+            explosionBuffer.add(new Explosion((int) x, (int) y, 2, (int) (SIZE * 0.05), Explosion.NO_FRAGMENTS));
+            if (!Player.collide) explosionBuffer.add(new Explosion(Player.x, Player.y, 2, 2, Explosion.NO_FRAGMENTS));
             remove = true;
             Player.collide = true;
         }

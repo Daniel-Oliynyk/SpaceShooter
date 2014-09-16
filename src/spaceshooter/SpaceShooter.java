@@ -21,9 +21,14 @@ public class SpaceShooter {
     static ArrayList<Projectile> bulletSprites = new ArrayList<>();
     static ArrayList<Explosion> explosionSprites = new ArrayList<>();
     
+    static ArrayList<Debris> debrisBuffer = new ArrayList<>();
+    static ArrayList<Projectile> bulletBuffer = new ArrayList<>();
+    static ArrayList<Explosion> explosionBuffer = new ArrayList<>();
+    
     static Player player = new Player();
     static Map map = new Map();
     static ImageManager images = new ImageManager();
+    static Alien alien = new Alien();
     
     public static void main(String[] args) {
         JFrame frame = new JFrame();
@@ -46,22 +51,28 @@ public class SpaceShooter {
             if (System.nanoTime() - timeStart > 1000000000 / FPS) {
                 timeStart = System.nanoTime();
                 map.drawMap();
-                debrisSprites = updateSprite(debrisSprites);
-                bulletSprites = updateSprite(bulletSprites);
+                debrisSprites = updateSprite(debrisSprites, debrisBuffer);
+                debrisBuffer.clear();
+                bulletSprites = updateSprite(bulletSprites, bulletBuffer);
+                bulletBuffer.clear();
                 player.drawPlayer();
-                explosionSprites = updateSprite(explosionSprites);
+                explosionSprites = updateSprite(explosionSprites, explosionBuffer);
+                explosionBuffer.clear();
+                alien.update();
                 frame.repaint();
             }
         }
     }
     
-    static ArrayList updateSprite(ArrayList list) {
-        for (Iterator<Sprite> it = list.iterator(); it.hasNext();) {
+    static ArrayList updateSprite(ArrayList list, ArrayList buffer) {
+        ArrayList both = list;
+        for (Iterator<Sprite> it = both.iterator(); it.hasNext();) {
             Sprite sprite = it.next();
             sprite.update();
             if (sprite.remove) it.remove();
         }
-        return list;
+        both.addAll(buffer);
+        return both;
     }
     
 }

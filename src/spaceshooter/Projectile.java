@@ -5,12 +5,14 @@ import static spaceshooter.SpaceShooter.*;
 
 public class Projectile extends Sprite {
     final double ANGLE;
-    static final int SPEED = 10, SIZE = 20;
-
-    public Projectile(int xp, int yp, double aimAngle) {
+    static final int SPEED = 7, SIZE = 20;
+    final boolean playerMissile;
+    
+    public Projectile(int xp, int yp, double aimAngle, boolean player) {
         x = xp;
         y = yp;
         ANGLE = aimAngle;
+        playerMissile = player;
     }
     
     @Override
@@ -37,6 +39,26 @@ public class Projectile extends Sprite {
                 break;
             }
         }
+        
+        if (playerMissile) {
+            for (Alien alien : alienSprites) {
+                if (!alien.remove && x + SIZE > alien.x && y + SIZE > alien.y && x < alien.x + Alien.SIZE && y < alien.y + Alien.SIZE) {
+                    alien.health--;
+                    if (alien.health < 1) alien.remove = true;
+                    if (alien.remove) explosionBuffer.add(new Explosion((int) alien.x, (int) alien.y, 2, (int) (Alien.SIZE * 0.05), Explosion.METAL_FRAGMENTS));
+
+                    if (!alien.remove) explosionBuffer.add(new Explosion((int) x, (int) y, 2, (int) (SIZE * 0.05), Explosion.NO_FRAGMENTS));
+                    remove = true;
+                    break;
+                }
+            }
+        }
+        else if (x + SIZE > Player.x && x < Player.x + Player.SIZE && y + SIZE > Player.y && y < Player.y + Player.SIZE) {
+            explosionBuffer.add(new Explosion(Player.x, Player.y, 2, (int) (Player.SIZE * 0.05), Explosion.NO_FRAGMENTS));
+            explosionBuffer.add(new Explosion((int) x, (int) y, 2, (int) (SIZE * 0.05), Explosion.NO_FRAGMENTS));
+            remove = true;
+        }
+        
         if (x > WIDTH || y > HEIGHT || x < 0 - SIZE || y < 0 - SIZE) remove = true;
     }
     

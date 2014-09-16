@@ -5,7 +5,7 @@ import java.awt.geom.Point2D;
 import static spaceshooter.SpaceShooter.*;
 
 public class Map {
-    final int STAR_AMOUNT = 300, UPDATE_AMOUNT = 1, ASTEROIDS = 20;
+    final int STAR_AMOUNT = 300, UPDATE_AMOUNT = 1, ASTEROID_CHANCE = 20, ALIEN_CHANCE = 250, ALIEN_AMOUNT = 5;
     Point2D.Double[] star = new Point2D.Double[STAR_AMOUNT];
 
     public Map() {
@@ -31,7 +31,7 @@ public class Map {
         }
         star = temp;
         
-        if (ran.nextInt(ASTEROIDS) == 1) {
+        if (ran.nextInt(ASTEROID_CHANCE) == 1) {
             int option = ran.nextInt(4);
             int an = ran.nextInt(180);
             double sp = ran.nextDouble() * 5;
@@ -41,6 +41,15 @@ public class Map {
                 case 1: debrisBuffer.add(new Debris(ran.nextInt(WIDTH), in, Math.toRadians(an + 0), sp, Debris.NON_FRAGMENT)); break;
                 case 2: debrisBuffer.add(new Debris(WIDTH, ran.nextInt(HEIGHT), Math.toRadians(an + 90), sp, Debris.NON_FRAGMENT)); break;
                 case 3: debrisBuffer.add(new Debris(ran.nextInt(WIDTH), HEIGHT, Math.toRadians(an + 180), sp, Debris.NON_FRAGMENT)); break;
+            }
+        }
+        if (ran.nextInt(ALIEN_CHANCE) == 1 && alienSprites.size() < ALIEN_AMOUNT) {
+            int option = ran.nextInt(4);
+            switch (option) {
+                case 0: alienBuffer.add(new Alien(Alien.SIZE * -1, ran.nextInt(HEIGHT))); break;
+                case 1: alienBuffer.add(new Alien(ran.nextInt(WIDTH), Alien.SIZE * -1)); break;
+                case 2: alienBuffer.add(new Alien(WIDTH, ran.nextInt(HEIGHT))); break;
+                case 3: alienBuffer.add(new Alien(ran.nextInt(WIDTH), HEIGHT)); break;
             }
         }
     }

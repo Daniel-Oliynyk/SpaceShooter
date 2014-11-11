@@ -1,8 +1,16 @@
 package spaceshooter;
 
 import java.awt.Graphics2D;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Random;
 import javax.swing.ImageIcon;
@@ -31,17 +39,21 @@ public class SpaceShooter {
     static Map map = new Map();
     static ImageManager images = new ImageManager();
     
+    static HashSet<Integer> keys = new HashSet<>();
+    static int mouseButton, mouseX, mouseY;
+    
     public static void main(String[] args) {
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Space Shooter Game");
-        frame.addKeyListener(Player.keyControl);
+        frame.addKeyListener(keyControl);
+        frame.addWindowListener(windowControl);
         frame.setResizable(false);
         
         JPanel panel = new JPanel();
         panel.add(new JLabel(new ImageIcon(screen)));
-        panel.addMouseMotionListener(Player.moveControl);
-        panel.addMouseListener(Player.clickControl);
+        panel.addMouseMotionListener(moveControl);
+        panel.addMouseListener(clickControl);
         frame.add(panel);
         frame.setVisible(true);
         frame.setSize(WIDTH + 7, HEIGHT + 34);
@@ -83,4 +95,62 @@ public class SpaceShooter {
         return both;
     }
     
+    static KeyAdapter keyControl = new KeyAdapter() {
+        
+        @Override
+        public void keyPressed(KeyEvent key) {
+            keys.add(key.getKeyCode());
+        }
+        
+        @Override
+        public void keyReleased(KeyEvent key) {
+            keys.remove(key.getKeyCode());
+        }
+    };
+    
+    static MouseMotionAdapter moveControl = new MouseMotionAdapter() {
+        
+        @Override
+        public void mouseDragged(MouseEvent me) {
+            mouseX = me.getX();
+            mouseY = me.getY();
+        }
+
+        @Override
+        public void mouseMoved(MouseEvent me) {
+            mouseX = me.getX();
+            mouseY = me.getY();
+        }
+    };
+    
+    static MouseAdapter clickControl = new MouseAdapter() {
+
+        @Override
+        public void mousePressed(MouseEvent me) {
+            mouseButton = me.getButton();
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent me) {
+            mouseButton = MouseEvent.NOBUTTON;
+        }
+    };
+    
+    static WindowAdapter windowControl = new WindowAdapter() {
+        
+        @Override
+        public void windowIconified(WindowEvent we) {
+            keys = new HashSet<>();
+        }
+        
+        @Override
+        public void windowLostFocus(WindowEvent we) {
+            keys = new HashSet<>();
+        }
+        
+        @Override
+        public void windowDeactivated(WindowEvent we) {
+            keys = new HashSet<>();
+        }
+    };
 }

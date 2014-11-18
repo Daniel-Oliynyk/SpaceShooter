@@ -35,10 +35,6 @@ public class SpaceShooter {
     static ArrayList<Explosion> explosionBuffer = new ArrayList<>();
     static ArrayList<Alien> alienBuffer = new ArrayList<>();
     
-    static Player player = new Player();
-    static Map map = new Map();
-    static ImageManager images = new ImageManager();
-    
     static HashSet<Integer> keys = new HashSet<>();
     static int mouseButton, mouseX, mouseY;
     
@@ -49,6 +45,9 @@ public class SpaceShooter {
         frame.addKeyListener(keyControl);
         frame.addWindowListener(windowControl);
         frame.setResizable(false);
+        
+        Map.initialize();
+        ImageManager.initialize();
         
         JPanel panel = new JPanel();
         panel.add(new JLabel(new ImageIcon(screen)));
@@ -63,7 +62,7 @@ public class SpaceShooter {
         while (true) {
             if (System.nanoTime() - timeStart > 1000000000 / FPS) {
                 timeStart = System.nanoTime();
-                map.drawMap();
+                Map.drawMap();
                 
                 debrisSprites = updateSprite(debrisSprites, debrisBuffer);
                 debrisBuffer.clear();
@@ -71,13 +70,15 @@ public class SpaceShooter {
                 bulletSprites = updateSprite(bulletSprites, bulletBuffer);
                 bulletBuffer.clear();
                 
-                player.drawPlayer();
+                Player.drawPlayer();
                 
                 explosionSprites = updateSprite(explosionSprites, explosionBuffer);
                 explosionBuffer.clear();
                 
                 alienSprites = updateSprite(alienSprites, alienBuffer);
                 alienBuffer.clear();
+                
+                Gui.drawGui();
                 
                 frame.repaint();
             }
@@ -141,16 +142,19 @@ public class SpaceShooter {
         @Override
         public void windowIconified(WindowEvent we) {
             keys = new HashSet<>();
+            mouseButton = 0;
         }
         
         @Override
         public void windowLostFocus(WindowEvent we) {
             keys = new HashSet<>();
+            mouseButton = 0;
         }
         
         @Override
         public void windowDeactivated(WindowEvent we) {
             keys = new HashSet<>();
+            mouseButton = 0;
         }
     };
 }

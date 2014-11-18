@@ -12,7 +12,7 @@ public class ImageManager {
     static BufferedImage[] ROCK = new BufferedImage[ROCK_SPRITES];
     static BufferedImage[] METAL = new BufferedImage[METAL_SPRITES];
             
-    public ImageManager() {
+    static void initialize() {
         try {
             SHIP = ImageIO.read(SpaceShooter.class.getResourceAsStream("img/ship.png"));
             MISSILE = ImageIO.read(SpaceShooter.class.getResourceAsStream("img/missile.png"));

@@ -55,10 +55,10 @@ public class Alien extends Sprite {
             }
         }
         
-        if (!remove && Player.x + Player.SIZE > x && Player.x < x + SIZE
-                && Player.y + Player.SIZE > y && Player.y < y + SIZE) {
+        if (!remove && Player.x + Player.SIZE > x && Player.x < x + SIZE && Player.y + Player.SIZE > y && Player.y < y + SIZE) {
             explosionBuffer.add(new Explosion((int) x, (int) y, 2, (int) (SIZE * 0.05), Explosion.NO_FRAGMENTS));
             explosionBuffer.add(new Explosion(Player.x, Player.y, 2, 2, Explosion.NO_FRAGMENTS));
+            Player.takeDamage(25);
             remove = true;
         }
         

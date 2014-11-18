@@ -5,16 +5,16 @@ import java.awt.geom.Point2D;
 import static spaceshooter.SpaceShooter.*;
 
 public class Map {
-    final int STAR_AMOUNT = 300, UPDATE_AMOUNT = 1, ASTEROID_CHANCE = 20, ALIEN_CHANCE = 250, ALIEN_AMOUNT = 5;
-    Point2D.Double[] star = new Point2D.Double[STAR_AMOUNT];
+    static final int STAR_AMOUNT = 300, UPDATE_AMOUNT = 1, ASTEROID_CHANCE = 20, ALIEN_CHANCE = 250, ALIEN_AMOUNT = 5;
+    static Point2D.Double[] star = new Point2D.Double[STAR_AMOUNT];
 
-    public Map() {
+    static void initialize() {
         for (int i = 0; i < STAR_AMOUNT; i++) {
             star[i] = new Point2D.Double(ran.nextInt(WIDTH), ran.nextInt(HEIGHT));
         }
     }
     
-    void drawMap() {
+    static void drawMap() {
         painter.setColor(new Color(0x0b1037));
         painter.fillRect(0, 0, WIDTH, HEIGHT);
         

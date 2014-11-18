@@ -44,10 +44,11 @@ public class Projectile extends Sprite {
             for (Alien alien : alienSprites) {
                 if (!alien.remove && x + SIZE > alien.x && y + SIZE > alien.y && x < alien.x + Alien.SIZE && y < alien.y + Alien.SIZE) {
                     alien.health--;
-                    if (alien.health < 1) alien.remove = true;
-                    if (alien.remove) explosionBuffer.add(new Explosion((int) alien.x, (int) alien.y, 2, (int) (Alien.SIZE * 0.05), Explosion.METAL_FRAGMENTS));
-
-                    if (!alien.remove) explosionBuffer.add(new Explosion((int) x, (int) y, 2, (int) (SIZE * 0.05), Explosion.NO_FRAGMENTS));
+                    if (alien.health < 1) {
+                        alien.remove = true;
+                        explosionBuffer.add(new Explosion((int) alien.x, (int) alien.y, 2, (int) (Alien.SIZE * 0.05), Explosion.METAL_FRAGMENTS));
+                    }
+                    else explosionBuffer.add(new Explosion((int) x, (int) y, 2, (int) (SIZE * 0.05), Explosion.NO_FRAGMENTS));
                     remove = true;
                     break;
                 }
@@ -56,6 +57,7 @@ public class Projectile extends Sprite {
         else if (x + SIZE > Player.x && x < Player.x + Player.SIZE && y + SIZE > Player.y && y < Player.y + Player.SIZE) {
             explosionBuffer.add(new Explosion(Player.x, Player.y, 2, (int) (Player.SIZE * 0.05), Explosion.NO_FRAGMENTS));
             explosionBuffer.add(new Explosion((int) x, (int) y, 2, (int) (SIZE * 0.05), Explosion.NO_FRAGMENTS));
+            Player.takeDamage(10);
             remove = true;
         }
         

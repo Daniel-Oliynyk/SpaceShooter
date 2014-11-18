@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 import static spaceshooter.SpaceShooter.*;
 
 public class Debris extends Sprite {
-    static int NON_FRAGMENT = 0, ROCK_FRAGMENT = 1, METAL_FRAGMENT = 2, INITIAL_SIZE = 80;
+    static final int NON_FRAGMENT = 0, ROCK_FRAGMENT = 1, METAL_FRAGMENT = 2, INITIAL_SIZE = 80;
     double SPEED, DIRECTION, ANGLE;
     final int ROTATION_SPEED, SIZE;
     final BufferedImage IMAGE;
@@ -47,6 +47,7 @@ public class Debris extends Sprite {
         if (!remove && Player.x + Player.SIZE > x && Player.x < x + SIZE && Player.y + Player.SIZE > y && Player.y < y + SIZE) {
             explosionBuffer.add(new Explosion((int) x, (int) y, 2, (int) (SIZE * 0.05), Explosion.NO_FRAGMENTS));
             explosionBuffer.add(new Explosion(Player.x, Player.y, 2, 2, Explosion.NO_FRAGMENTS));
+            Player.takeDamage(SIZE / 2);
             remove = true;
         }
     }

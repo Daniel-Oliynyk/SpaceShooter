@@ -37,6 +37,7 @@ public class SpaceShooter {
     
     static HashSet<Integer> keys = new HashSet<>();
     static int mouseButton, mouseX, mouseY;
+    static boolean resetSprites;
     
     public static void main(String[] args) {
         JFrame frame = new JFrame();
@@ -79,6 +80,8 @@ public class SpaceShooter {
                 alienBuffer.clear();
                 
                 Gui.drawGui();
+                if (resetSprites && debrisSprites.size() + bulletSprites.size()
+                        + explosionSprites.size() + alienSprites.size() == 0) resetSprites = false;
                 
                 frame.repaint();
             }
@@ -87,12 +90,15 @@ public class SpaceShooter {
     
     static ArrayList updateSprite(ArrayList list, ArrayList buffer) {
         ArrayList both = list;
-        for (Iterator<Sprite> it = both.iterator(); it.hasNext();) {
-            Sprite sprite = it.next();
-            sprite.update();
-            if (sprite.remove) it.remove();
+        if (resetSprites) both.clear();
+        else {
+            for (Iterator<Sprite> it = both.iterator(); it.hasNext();) {
+                Sprite sprite = it.next();
+                sprite.update();
+                if (sprite.remove) it.remove();
+            }
+            both.addAll(buffer);
         }
-        both.addAll(buffer);
         return both;
     }
     

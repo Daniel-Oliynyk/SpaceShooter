@@ -9,7 +9,7 @@ import static spaceshooter.SpaceShooter.*;
 public class Player {
     
     static final int SPEED = 3, SIZE = 40, SHOOT_DELAY = 15;
-    static int x = WIDTH / 2 - (SIZE / 2), y = HEIGHT / 2 - (SIZE / 2), delay, health = 100;
+    static int x = WIDTH / 2 - (SIZE / 2), y = HEIGHT / 2 - (SIZE / 2), delay, health = 100, score;
     
     static void drawPlayer() {
         if (keys.contains(KeyEvent.VK_A) && x - SPEED > 0) x -= SPEED;
@@ -34,8 +34,12 @@ public class Player {
     
     static void takeDamage(int damage) {
         if (health - damage <= 0) {
-            JOptionPane.showMessageDialog(null, "You lost. Press OK to reset health.");
+            JOptionPane.showMessageDialog(null, "You lost with a score of " + score);
+            resetSprites = true;
+            x = WIDTH / 2 - (SIZE / 2);
+            y = HEIGHT / 2 - (SIZE / 2);
             health = 100;
+            score = 0;
         }
         else health -= damage;
     }

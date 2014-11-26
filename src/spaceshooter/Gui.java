@@ -15,7 +15,14 @@ public class Gui {
             painter.fillRect(10, 10, Player.health, 10);
             painter.setColor(Color.BLUE);
             painter.fillRect(Player.health + 10, 10, 100 - Player.health, 10);
+            if (Player.health < 100) {
+                painter.setColor(Color.BLACK);
+                painter.fillRect(Player.health + 10 - (OUTLINE_WIDTH / 2), 10, OUTLINE_WIDTH, 10);
+            }
         }
+        painter.setColor(Color.YELLOW);
+        String score = Player.score + "";
+        painter.drawString(score, WIDTH - (20 + (score.length() - 1) * 7), 20);
     }
     
 }

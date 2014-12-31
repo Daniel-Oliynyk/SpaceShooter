@@ -8,12 +8,12 @@ public class Explosion extends Sprite {
     final int LENGTH_MULTIPLIER, SCALE, TYPE, HEALTH_CHANCE;
     int countDown;
 
-    public Explosion(int xp, int yp, int time, int size, int fragments, boolean dropHealth) {
-        LENGTH_MULTIPLIER = time;
-        SCALE = size;
-        TYPE = fragments;
-        x = xp;
-        y = yp;
+    public Explosion(int x, int y, int time, int scale, int fragments, boolean dropHealth) {
+        this.LENGTH_MULTIPLIER = time;
+        this.SCALE = scale;
+        this.TYPE = fragments;
+        this.x = x;
+        this.y = y;
         countDown = ImageManager.EXPLOSION_SPRITES * LENGTH_MULTIPLIER;
         if (dropHealth) HEALTH_CHANCE = 5;
         else HEALTH_CHANCE = 0;
@@ -21,8 +21,8 @@ public class Explosion extends Sprite {
         if (TYPE != NO_FRAGMENTS) {
             int pieces = ran.nextInt(6) + 4;
             for (int i = 0; i < pieces; i++) {
-                if (dropHealth && ran.nextInt(HEALTH_CHANCE) == 1) debrisBuffer.add(new Debris(x + (SCALE * 10), y + (SCALE * 10), 2 * Math.PI / pieces * i, ran.nextDouble() * 3, Debris.HEALTH_FRAGMENT));
-                else debrisBuffer.add(new Debris(x + (SCALE * 10), y + (SCALE * 10), 2 * Math.PI / pieces * i, ran.nextDouble() * 3, TYPE));
+                if (dropHealth && ran.nextInt(HEALTH_CHANCE) == 1) debrisBuffer.add(new HealthDrop(x + (SCALE * 10), y + (SCALE * 10), 2 * Math.PI / pieces * i, ran.nextDouble() * 3));
+                else debrisBuffer.add(new SmallDebris(x + (SCALE * 10), y + (SCALE * 10), 2 * Math.PI / pieces * i, ran.nextDouble() * 3, TYPE));
             }
         }
     }

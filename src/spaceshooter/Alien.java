@@ -9,12 +9,12 @@ public class Alien extends Sprite {
     int countDown = ran.nextInt(100) + 100, health = 3;
     State current = State.Moving, next;
     
-    public Alien(double xp, double yp) {
-        x = xp;
-        y = yp;
-        targetX = ran.nextInt(WIDTH - SIZE);
-        targetY = ran.nextInt(HEIGHT - SIZE);
-        angle = Math.atan2(targetY + (SIZE / 2) - (y + (SIZE / 2)), targetX + (SIZE / 2) - (x + (SIZE / 2)));
+    public Alien(double x, double y) {
+        this.x = x;
+        this.y = y;
+        this.targetX = ran.nextInt(WIDTH - SIZE);
+        this.targetY = ran.nextInt(HEIGHT - SIZE);
+        this.angle = Math.atan2(targetY + (SIZE / 2) - (y + (SIZE / 2)), targetX + (SIZE / 2) - (x + (SIZE / 2)));
     }
     
     @Override

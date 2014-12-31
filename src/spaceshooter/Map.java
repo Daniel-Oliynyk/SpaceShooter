@@ -35,12 +35,12 @@ public class Map {
             int option = ran.nextInt(4);
             int an = ran.nextInt(180);
             double sp = ran.nextDouble() * 5;
-            int in = Debris.INITIAL_SIZE * -1;
+            int in = Debris.SPAWN_DISTANCE * -1;
             switch (option) {
-                case 0: debrisBuffer.add(new Debris(in, ran.nextInt(HEIGHT), Math.toRadians(an + 270), sp, Debris.NON_FRAGMENT)); break;
-                case 1: debrisBuffer.add(new Debris(ran.nextInt(WIDTH), in, Math.toRadians(an + 0), sp, Debris.NON_FRAGMENT)); break;
-                case 2: debrisBuffer.add(new Debris(WIDTH, ran.nextInt(HEIGHT), Math.toRadians(an + 90), sp, Debris.NON_FRAGMENT)); break;
-                case 3: debrisBuffer.add(new Debris(ran.nextInt(WIDTH), HEIGHT, Math.toRadians(an + 180), sp, Debris.NON_FRAGMENT)); break;
+                case 0: debrisBuffer.add(new Asteroid(in, ran.nextInt(HEIGHT), Math.toRadians(an + 270), sp)); break;
+                case 1: debrisBuffer.add(new Asteroid(ran.nextInt(WIDTH), in, Math.toRadians(an + 0), sp)); break;
+                case 2: debrisBuffer.add(new Asteroid(WIDTH, ran.nextInt(HEIGHT), Math.toRadians(an + 90), sp)); break;
+                case 3: debrisBuffer.add(new Asteroid(ran.nextInt(WIDTH), HEIGHT, Math.toRadians(an + 180), sp)); break;
             }
         }
         if (ran.nextInt(ALIEN_CHANCE) == 1 && alienSprites.size() < ALIEN_AMOUNT) {

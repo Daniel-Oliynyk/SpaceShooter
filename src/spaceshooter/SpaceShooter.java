@@ -103,7 +103,6 @@ public class SpaceShooter {
     }
     
     static KeyAdapter keyControl = new KeyAdapter() {
-        
         @Override
         public void keyPressed(KeyEvent key) {
             keys.add(key.getKeyCode());
@@ -116,7 +115,6 @@ public class SpaceShooter {
     };
     
     static MouseMotionAdapter moveControl = new MouseMotionAdapter() {
-        
         @Override
         public void mouseDragged(MouseEvent me) {
             mouseX = me.getX();
@@ -131,7 +129,6 @@ public class SpaceShooter {
     };
     
     static MouseAdapter clickControl = new MouseAdapter() {
-
         @Override
         public void mousePressed(MouseEvent me) {
             mouseButton = me.getButton();
@@ -144,7 +141,6 @@ public class SpaceShooter {
     };
     
     static WindowAdapter windowControl = new WindowAdapter() {
-        
         @Override
         public void windowIconified(WindowEvent we) {
             keys = new HashSet<>();

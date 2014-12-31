@@ -3,6 +3,7 @@ package spaceshooter;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import static spaceshooter.SpaceShooter.*;
 
 public class ImageManager {
     static final int ASTEROID_SPRITES = 3, EXPLOSION_SPRITES = 7, ROCK_SPRITES = 3, METAL_SPRITES = 3, HEALTH_SPRITES = 3;
@@ -28,6 +29,10 @@ public class ImageManager {
         catch (IOException ex) {
             System.err.println(ex);
         }
+    }
+    
+    static BufferedImage randomImage(BufferedImage[] array) {
+        return array[ran.nextInt(array.length)];
     }
     
 }

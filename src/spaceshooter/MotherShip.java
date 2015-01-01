@@ -3,13 +3,13 @@ package spaceshooter;
 import java.awt.geom.AffineTransform;
 import static spaceshooter.SpaceShooter.*;
 
-public class Alien extends Enemy {
-    static final int SET_SIZE = 80;
+public class MotherShip extends Enemy {
+    static final int SET_SIZE = 160;
     double targetX, targetY, targetAngle;
     int countDown = ran.nextInt(100) + 100;
     State current = State.Moving, next;
     
-    public Alien(double x, double y) {
+    public MotherShip(double x, double y) {
         super(SET_SIZE);
         this.x = x;
         this.y = y;
@@ -17,7 +17,7 @@ public class Alien extends Enemy {
         targetY = ran.nextInt(HEIGHT - SIZE);
         speed = ran.nextInt(2) + 2;
         angle = Math.atan2(targetY + (SIZE / 2) - (y + (SIZE / 2)), targetX + (SIZE / 2) - (x + (SIZE / 2)));
-        health = 3;
+        health = 6;
     }
     
     @Override
@@ -65,10 +65,7 @@ public class Alien extends Enemy {
         
         if (x + SIZE < 0 || x > WIDTH || y + SIZE < 0 || y > HEIGHT) remove = true;
         
-        AffineTransform tran = new AffineTransform();
-        tran.translate(x, y);
-        tran.rotate(angle, SIZE / 2, SIZE / 2);
-        painter.drawImage(ImageManager.ALIEN, tran, null);
+        painter.drawImage(ImageManager.MOTHERSHIP, (int) x, (int) y, null);
     }
     
     static enum State {

@@ -49,12 +49,12 @@ public class Projectile extends Sprite {
             }
         }
         if (COLLIDE_WITH_ENEMY && !remove) {
-            for (Alien alien : alienSprites) {
-                if (!alien.remove && x + SIZE > alien.x && y + SIZE > alien.y && x < alien.x + Alien.SIZE && y < alien.y + Alien.SIZE) {
-                    alien.health--;
-                    if (alien.health < 1) {
-                        alien.remove = true;
-                        explosionBuffer.add(new Explosion(alien.x, alien.y, 2, Alien.SIZE, Explosion.METAL_FRAGMENTS, true));
+            for (Enemy enemy : enemySprites) {
+                if (!enemy.remove && x + SIZE > enemy.x && y + SIZE > enemy.y && x < enemy.x + enemy.SIZE && y < enemy.y + enemy.SIZE) {
+                    enemy.health--;
+                    if (enemy.health < 1) {
+                        enemy.remove = true;
+                        explosionBuffer.add(new Explosion(enemy.x, enemy.y, 2, enemy.SIZE, Explosion.METAL_FRAGMENTS, true));
                         Player.score += 15;
                     }
                     else explosionBuffer.add(new Explosion(x, y, SIZE));

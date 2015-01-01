@@ -5,7 +5,7 @@ import java.awt.geom.Point2D;
 import static spaceshooter.SpaceShooter.*;
 
 public class Map {
-    static final int STAR_AMOUNT = 300, UPDATE_AMOUNT = 1, ASTEROID_CHANCE = 20, ALIEN_CHANCE = 250, ALIEN_AMOUNT = 5;
+    static final int STAR_AMOUNT = 300, UPDATE_AMOUNT = 1, ASTEROID_CHANCE = 40, ALIEN_CHANCE = 250, ALIEN_AMOUNT = 6, MOTHERSHIP_CHANCE = 500;
     static Point2D.Double[] star = new Point2D.Double[STAR_AMOUNT];
 
     static void initialize() {
@@ -32,10 +32,10 @@ public class Map {
         star = temp;
         
         if (ran.nextInt(ASTEROID_CHANCE) == 1) {
-            int option = ran.nextInt(4);
             int an = ran.nextInt(180);
             double sp = ran.nextDouble() * 5;
             int in = Debris.SPAWN_DISTANCE * -1;
+            int option = ran.nextInt(4);
             switch (option) {
                 case 0: debrisBuffer.add(new Asteroid(in, ran.nextInt(HEIGHT), Math.toRadians(an + 270), sp)); break;
                 case 1: debrisBuffer.add(new Asteroid(ran.nextInt(WIDTH), in, Math.toRadians(an + 0), sp)); break;
@@ -43,13 +43,22 @@ public class Map {
                 case 3: debrisBuffer.add(new Asteroid(ran.nextInt(WIDTH), HEIGHT, Math.toRadians(an + 180), sp)); break;
             }
         }
-        if (ran.nextInt(ALIEN_CHANCE) == 1 && alienSprites.size() < ALIEN_AMOUNT) {
+        if (ran.nextInt(ALIEN_CHANCE) == 1 && enemySprites.size() < ALIEN_AMOUNT) {
             int option = ran.nextInt(4);
             switch (option) {
-                case 0: alienBuffer.add(new Alien(Alien.SIZE * -1, ran.nextInt(HEIGHT))); break;
-                case 1: alienBuffer.add(new Alien(ran.nextInt(WIDTH), Alien.SIZE * -1)); break;
-                case 2: alienBuffer.add(new Alien(WIDTH, ran.nextInt(HEIGHT))); break;
-                case 3: alienBuffer.add(new Alien(ran.nextInt(WIDTH), HEIGHT)); break;
+                case 0: enemyBuffer.add(new Alien(Alien.SET_SIZE * -1, ran.nextInt(HEIGHT))); break;
+                case 1: enemyBuffer.add(new Alien(ran.nextInt(WIDTH), Alien.SET_SIZE * -1)); break;
+                case 2: enemyBuffer.add(new Alien(WIDTH, ran.nextInt(HEIGHT))); break;
+                case 3: enemyBuffer.add(new Alien(ran.nextInt(WIDTH), HEIGHT)); break;
+            }
+        }
+        else if (ran.nextInt(MOTHERSHIP_CHANCE) == 1 && enemySprites.size() < ALIEN_AMOUNT) {
+            int option = ran.nextInt(4);
+            switch (option) {
+                case 0: enemyBuffer.add(new MotherShip(Alien.SET_SIZE * -1, ran.nextInt(HEIGHT))); break;
+                case 1: enemyBuffer.add(new MotherShip(ran.nextInt(WIDTH), Alien.SET_SIZE * -1)); break;
+                case 2: enemyBuffer.add(new MotherShip(WIDTH, ran.nextInt(HEIGHT))); break;
+                case 3: enemyBuffer.add(new MotherShip(ran.nextInt(WIDTH), HEIGHT)); break;
             }
         }
     }

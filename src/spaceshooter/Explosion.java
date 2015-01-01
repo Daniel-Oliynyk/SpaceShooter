@@ -18,12 +18,12 @@ public class Explosion extends Sprite {
         HEALTH_CHANCE = 0;
     }
     
-    public Explosion(double x, double y, int time, int size, int fragments, boolean dropHealth) {
+    public Explosion(double x, double y, int length, int size, int type, boolean dropHealth) {
         this.x = x;
         this.y = y;
-        this.LENGTH_MULTIPLIER = time;
+        this.LENGTH_MULTIPLIER = length;
         this.SCALE = size / 20;
-        this.TYPE = fragments;
+        this.TYPE = type;
         countDown = ImageManager.EXPLOSION_SPRITES * LENGTH_MULTIPLIER;
         if (dropHealth) HEALTH_CHANCE = 5;
         else HEALTH_CHANCE = 0;

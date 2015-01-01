@@ -28,12 +28,12 @@ public class SpaceShooter {
     static ArrayList<Debris> debrisSprites = new ArrayList<>();
     static ArrayList<Projectile> bulletSprites = new ArrayList<>();
     static ArrayList<Explosion> explosionSprites = new ArrayList<>();
-    static ArrayList<Alien> alienSprites = new ArrayList<>();
+    static ArrayList<Enemy> enemySprites = new ArrayList<>();
     
     static ArrayList<Debris> debrisBuffer = new ArrayList<>();
     static ArrayList<Projectile> bulletBuffer = new ArrayList<>();
     static ArrayList<Explosion> explosionBuffer = new ArrayList<>();
-    static ArrayList<Alien> alienBuffer = new ArrayList<>();
+    static ArrayList<Enemy> enemyBuffer = new ArrayList<>();
     
     static HashSet<Integer> keys = new HashSet<>();
     static int mouseButton, mouseX, mouseY;
@@ -76,12 +76,12 @@ public class SpaceShooter {
                 explosionSprites = updateSprite(explosionSprites, explosionBuffer);
                 explosionBuffer.clear();
                 
-                alienSprites = updateSprite(alienSprites, alienBuffer);
-                alienBuffer.clear();
+                enemySprites = updateSprite(enemySprites, enemyBuffer);
+                enemyBuffer.clear();
                 
                 Gui.drawGui();
-                if (resetSprites && debrisSprites.size() + bulletSprites.size()
-                        + explosionSprites.size() + alienSprites.size() == 0) resetSprites = false;
+                
+                if (resetSprites && debrisSprites.size() + bulletSprites.size() + explosionSprites.size() + enemySprites.size() == 0) resetSprites = false;
                 
                 frame.repaint();
             }

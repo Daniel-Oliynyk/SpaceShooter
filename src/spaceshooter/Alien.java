@@ -6,7 +6,7 @@ import static spaceshooter.SpaceShooter.*;
 public class Alien extends Enemy {
     static final int SET_SIZE = 80;
     double targetX, targetY, targetAngle;
-    int countDown = ran.nextInt(100) + 100;
+    int missileCoolDown = ran.nextInt(100) + 100;
     State current = State.Moving, next;
     
     public Alien(double x, double y) {
@@ -15,7 +15,7 @@ public class Alien extends Enemy {
         this.y = y;
         targetX = ran.nextInt(WIDTH - SIZE);
         targetY = ran.nextInt(HEIGHT - SIZE);
-        speed = ran.nextInt(2) + 2;
+        speed = ran.nextInt(3) + 2;
         angle = Math.atan2(targetY + (SIZE / 2) - (y + (SIZE / 2)), targetX + (SIZE / 2) - (x + (SIZE / 2)));
         health = 3;
     }
@@ -40,13 +40,13 @@ public class Alien extends Enemy {
         }
         else if (current == State.Shooting) {
             angle = Math.atan2((Player.y + (Player.SIZE / 2)) - (y + (SIZE / 2)), (Player.x + (Player.SIZE / 2)) - (x + (SIZE / 2)));
-            countDown--;
-            if (countDown % 20 == 0) {
+            missileCoolDown--;
+            if (missileCoolDown % 20 == 0) {
                 int offset = (SIZE / 2) - (Projectile.SIZE / 2);
-                bulletBuffer.add(new Projectile((int) x + offset, (int) y + offset, angle, false));
+                bulletBuffer.add(new Projectile((int) x + offset, (int) y + offset, angle, Projectile.ENEMY_MISSILE));
             }
-            if (countDown < 1) {
-                countDown = ran.nextInt(100) + 100;
+            if (missileCoolDown < 1) {
+                missileCoolDown = ran.nextInt(100) + 100;
                 speed = ran.nextInt(2) + 2;
                 targetX = ran.nextInt(WIDTH - SIZE);
                 targetY = ran.nextInt(HEIGHT - SIZE);

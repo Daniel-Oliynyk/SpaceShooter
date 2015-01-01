@@ -55,8 +55,8 @@ public class Map {
         else if (ran.nextInt(MOTHERSHIP_CHANCE) == 1 && enemySprites.size() < ALIEN_AMOUNT) {
             int option = ran.nextInt(4);
             switch (option) {
-                case 0: enemyBuffer.add(new MotherShip(Alien.SET_SIZE * -1, ran.nextInt(HEIGHT))); break;
-                case 1: enemyBuffer.add(new MotherShip(ran.nextInt(WIDTH), Alien.SET_SIZE * -1)); break;
+                case 0: enemyBuffer.add(new MotherShip(MotherShip.SET_SIZE * -1, ran.nextInt(HEIGHT))); break;
+                case 1: enemyBuffer.add(new MotherShip(ran.nextInt(WIDTH), MotherShip.SET_SIZE * -1)); break;
                 case 2: enemyBuffer.add(new MotherShip(WIDTH, ran.nextInt(HEIGHT))); break;
                 case 3: enemyBuffer.add(new MotherShip(ran.nextInt(WIDTH), HEIGHT)); break;
             }

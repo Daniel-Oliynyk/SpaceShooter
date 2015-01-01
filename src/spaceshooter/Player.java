@@ -22,7 +22,7 @@ public class Player {
             int add = SIZE / 2;
             double angle = Math.atan2(mouseY - (y + add), mouseX - (x + add));
             int offset = (SIZE / 2) - (Projectile.SIZE / 2);
-            bulletBuffer.add(new Projectile(x + offset, y + offset, angle, true));
+            bulletBuffer.add(new Projectile(x + offset, y + offset, angle, Projectile.PLAYER_MISSILE));
             delay = 0;
         }
         

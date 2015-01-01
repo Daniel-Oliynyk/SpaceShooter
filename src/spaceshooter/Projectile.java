@@ -1,18 +1,22 @@
 package spaceshooter;
 
 import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
 import static spaceshooter.SpaceShooter.*;
 
 public class Projectile extends Sprite {
-    static final int SPEED = 7, SIZE = 20;
+    static final int SPEED = 7, SIZE = 20, PLAYER_MISSILE = 0, ENEMY_MISSILE = 1, ENEMY_PLASMA = 2;
     final double ANGLE;
     final boolean COLLIDE_WITH_ENEMY;
+    final BufferedImage IMAGE;
     
-    public Projectile(int x, int y, double angle, boolean playerMissile) {
+    public Projectile(int x, int y, double angle, int missileType) {
         this.x = x;
         this.y = y;
         this.ANGLE = angle;
-        this.COLLIDE_WITH_ENEMY = playerMissile;
+        COLLIDE_WITH_ENEMY = missileType == PLAYER_MISSILE;
+        if (missileType == ENEMY_PLASMA) IMAGE = ImageManager.PLASMA;
+        else IMAGE = ImageManager.MISSILE;
     }
     
     @Override
@@ -23,7 +27,7 @@ public class Projectile extends Sprite {
         AffineTransform tran = new AffineTransform();
         tran.translate(x, y);
         tran.rotate(ANGLE, SIZE / 2, SIZE / 2);
-        painter.drawImage(ImageManager.MISSILE, tran, null);
+        painter.drawImage(IMAGE, tran, null);
         
         for (Debris debris : debrisSprites) {
             if (!debris.remove && x + SIZE > debris.x && y + SIZE > debris.y && x < debris.x + debris.SIZE && y < debris.y + debris.SIZE && debris.TYPE != Debris.HEALTH_FRAGMENT) {

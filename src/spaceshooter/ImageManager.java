@@ -7,7 +7,7 @@ import static spaceshooter.SpaceShooter.*;
 
 public class ImageManager {
     static final int ASTEROID_SPRITES = 3, EXPLOSION_SPRITES = 7, ROCK_SPRITES = 3, METAL_SPRITES = 3, HEALTH_SPRITES = 3;
-    static BufferedImage SHIP, MISSILE, ALIEN, MOTHERSHIP;
+    static BufferedImage SHIP, MISSILE, PLASMA, ALIEN, MOTHERSHIP;
     static BufferedImage[] ASTEROID = new BufferedImage[ASTEROID_SPRITES];
     static BufferedImage[] EXPLOSION = new BufferedImage[EXPLOSION_SPRITES];
     static BufferedImage[] ROCK = new BufferedImage[ROCK_SPRITES];
@@ -16,10 +16,11 @@ public class ImageManager {
             
     static void initialize() {
         try {
-            SHIP = ImageIO.read(SpaceShooter.class.getResourceAsStream("img/ship.png"));
-            MISSILE = ImageIO.read(SpaceShooter.class.getResourceAsStream("img/missile.png"));
-            ALIEN = ImageIO.read(SpaceShooter.class.getResourceAsStream("img/enemy0.png"));
-            MOTHERSHIP = ImageIO.read(SpaceShooter.class.getResourceAsStream("img/enemy1.png"));
+            SHIP = ImageIO.read(SpaceShooter.class.getResourceAsStream("img/player/ship.png"));
+            MISSILE = ImageIO.read(SpaceShooter.class.getResourceAsStream("img/player/missile.png"));
+            PLASMA = ImageIO.read(SpaceShooter.class.getResourceAsStream("img/enemy/plasma.png"));
+            ALIEN = ImageIO.read(SpaceShooter.class.getResourceAsStream("img/enemy/enemy0.png"));
+            MOTHERSHIP = ImageIO.read(SpaceShooter.class.getResourceAsStream("img/enemy/enemy1.png"));
             
             for (int i = 0; i < ASTEROID_SPRITES; i++) ASTEROID[i] = ImageIO.read(SpaceShooter.class.getResourceAsStream("img/debris/asteroid" + i + ".png"));
             for (int i = 0; i < EXPLOSION_SPRITES; i++) EXPLOSION[i] = ImageIO.read(SpaceShooter.class.getResourceAsStream("img/explosions/explosion" + i + ".png"));

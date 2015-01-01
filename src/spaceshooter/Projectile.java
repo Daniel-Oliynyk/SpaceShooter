@@ -4,8 +4,8 @@ import java.awt.geom.AffineTransform;
 import static spaceshooter.SpaceShooter.*;
 
 public class Projectile extends Sprite {
-    final double ANGLE;
     static final int SPEED = 7, SIZE = 20;
+    final double ANGLE;
     final boolean COLLIDE_WITH_ENEMY;
     
     public Projectile(int x, int y, double angle, boolean playerMissile) {
@@ -30,12 +30,12 @@ public class Projectile extends Sprite {
                 debris.health--;
                 if (debris.health < 1) debris.remove = true;
                 if (debris.remove) {
-                    if (debris.SIZE == 80) explosionBuffer.add(new Explosion((int) debris.x, (int) debris.y, 2, (int) (debris.SIZE * 0.05), Explosion.ROCK_FRAGMENTS, true));
-                    else if (debris.SIZE == 20) explosionBuffer.add(new Explosion((int) x, (int) y, 2, (int) (SIZE * 0.05), Explosion.NO_FRAGMENTS, false));
+                    if (debris.SIZE == 80) explosionBuffer.add(new Explosion(debris.x, debris.y, 2, debris.SIZE, Explosion.ROCK_FRAGMENTS, true));
+                    else if (debris.SIZE == 20) explosionBuffer.add(new Explosion(x, y, SIZE));
                     if (COLLIDE_WITH_ENEMY) Player.score += debris.SIZE / 4;
                 }
                 
-                if (!debris.remove) explosionBuffer.add(new Explosion((int) x, (int) y, 2, 1, Explosion.NO_FRAGMENTS, false));
+                if (!debris.remove) explosionBuffer.add(new Explosion(x, y, SIZE));
                 remove = true;
                 break;
             }
@@ -43,7 +43,7 @@ public class Projectile extends Sprite {
         
         for (Projectile bullet : bulletSprites) {
             if (bullet.COLLIDE_WITH_ENEMY != COLLIDE_WITH_ENEMY && !bullet.remove && x + SIZE > bullet.x && x < bullet.x + SIZE && y + SIZE > bullet.y && y < bullet.y + SIZE) {
-                explosionBuffer.add(new Explosion((int) x, (int) y, 2, (int) (SIZE * 0.05), Explosion.NO_FRAGMENTS, false));
+                explosionBuffer.add(new Explosion(x, y, SIZE));
                 remove = true;
                 bullet.remove = true;
             }
@@ -54,18 +54,18 @@ public class Projectile extends Sprite {
                     alien.health--;
                     if (alien.health < 1) {
                         alien.remove = true;
-                        explosionBuffer.add(new Explosion((int) alien.x, (int) alien.y, 2, (int) (Alien.SIZE * 0.05), Explosion.METAL_FRAGMENTS, true));
+                        explosionBuffer.add(new Explosion(alien.x, alien.y, 2, Alien.SIZE, Explosion.METAL_FRAGMENTS, true));
                         Player.score += 15;
                     }
-                    else explosionBuffer.add(new Explosion((int) x, (int) y, 2, (int) (SIZE * 0.05), Explosion.NO_FRAGMENTS, false));
+                    else explosionBuffer.add(new Explosion(x, y, SIZE));
                     remove = true;
                     break;
                 }
             }
         }
         else if (x + SIZE > Player.x && x < Player.x + Player.SIZE && y + SIZE > Player.y && y < Player.y + Player.SIZE) {
-            explosionBuffer.add(new Explosion(Player.x, Player.y, 2, (int) (Player.SIZE * 0.05), Explosion.NO_FRAGMENTS, false));
-            explosionBuffer.add(new Explosion((int) x, (int) y, 2, (int) (SIZE * 0.05), Explosion.NO_FRAGMENTS, false));
+            explosionBuffer.add(new Explosion(Player.x, Player.y, 2, Player.SIZE, Explosion.NO_FRAGMENTS, false));
+            explosionBuffer.add(new Explosion(x, y, SIZE));
             Player.takeDamage(10);
             remove = true;
         }

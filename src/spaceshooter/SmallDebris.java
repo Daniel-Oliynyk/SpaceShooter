@@ -14,8 +14,8 @@ public class SmallDebris extends Debris {
         super.update();
         angle = angle + ((2 * Math.PI) / ROTATION_SPEED);
         if (!remove && Player.x + Player.SIZE > x && Player.x < x + SIZE && Player.y + Player.SIZE > y && Player.y < y + SIZE) {
-            explosionBuffer.add(new Explosion((int) x, (int) y, 2, 1, Explosion.NO_FRAGMENTS, false));
-            explosionBuffer.add(new Explosion(Player.x, Player.y, 2, 2, Explosion.NO_FRAGMENTS, false));
+            explosionBuffer.add(new Explosion(x, y, SIZE));
+            explosionBuffer.add(new Explosion(Player.x, Player.y, Player.SIZE));
             Player.takeDamage(10);
             remove = true;
         }

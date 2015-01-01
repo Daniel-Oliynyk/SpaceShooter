@@ -37,8 +37,7 @@ public class Alien extends Sprite {
             }
         }
         else if (current == State.Shooting) {
-            angle = Math.atan2((Player.y + (Player.SIZE / 2)) - (y + (SIZE / 2)),
-                    (Player.x + (Player.SIZE / 2)) - (x + (SIZE / 2)));
+            angle = Math.atan2((Player.y + (Player.SIZE / 2)) - (y + (SIZE / 2)), (Player.x + (Player.SIZE / 2)) - (x + (SIZE / 2)));
             countDown--;
             if (countDown % 20 == 0) {
                 int offset = (SIZE / 2) - (Projectile.SIZE / 2);
@@ -56,8 +55,8 @@ public class Alien extends Sprite {
         }
         
         if (!remove && Player.x + Player.SIZE > x && Player.x < x + SIZE && Player.y + Player.SIZE > y && Player.y < y + SIZE) {
-            explosionBuffer.add(new Explosion((int) x, (int) y, 2, (int) (SIZE * 0.05), Explosion.NO_FRAGMENTS, false));
-            explosionBuffer.add(new Explosion(Player.x, Player.y, 2, 2, Explosion.NO_FRAGMENTS, false));
+            explosionBuffer.add(new Explosion(x, y, SIZE));
+            explosionBuffer.add(new Explosion(Player.x, Player.y, Player.SIZE));
             Player.takeDamage(25);
             remove = true;
         }

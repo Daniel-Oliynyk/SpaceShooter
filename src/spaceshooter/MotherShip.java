@@ -8,7 +8,7 @@ public class MotherShip extends Enemy {
     State state = State.Moving;
     
     public MotherShip(double x, double y) {
-        super(SET_SIZE);
+        super(SET_SIZE, Enemy.MOTHERSHIP);
         this.x = x;
         this.y = y;
         speed = ran.nextInt(2) + 1;

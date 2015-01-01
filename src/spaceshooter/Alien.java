@@ -10,7 +10,7 @@ public class Alien extends Enemy {
     State current = State.Moving, next;
     
     public Alien(double x, double y) {
-        super(SET_SIZE);
+        super(SET_SIZE, Enemy.ALIEN);
         this.x = x;
         this.y = y;
         targetX = ran.nextInt(WIDTH - SIZE);
@@ -25,8 +25,7 @@ public class Alien extends Enemy {
         if (current == State.Turning) {
             if (angle < targetAngle) angle += 0.1;
             else angle -= 0.1;
-            if (angle + 0.1 > targetAngle && angle < targetAngle && angle + 0.1 > targetAngle && angle < targetAngle)
-                current = next;
+            if (angle + 0.1 > targetAngle && angle < targetAngle && angle + 0.1 > targetAngle && angle < targetAngle) current = next;
         }
         else if (current == State.Moving) {
             x += Math.cos(angle) * speed;

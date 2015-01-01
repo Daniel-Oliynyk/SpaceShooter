@@ -12,6 +12,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Random;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -25,15 +26,15 @@ public class SpaceShooter {
     static Graphics2D painter = screen.createGraphics();
     static Random ran = new Random();
     
-    static ArrayList<Debris> debrisSprites = new ArrayList<>();
-    static ArrayList<Projectile> bulletSprites = new ArrayList<>();
-    static ArrayList<Explosion> explosionSprites = new ArrayList<>();
-    static ArrayList<Enemy> enemySprites = new ArrayList<>();
+    static List<Debris> debrisSprites = new ArrayList<>();
+    static List<Projectile> bulletSprites = new ArrayList<>();
+    static List<Explosion> explosionSprites = new ArrayList<>();
+    static List<Enemy> enemySprites = new ArrayList<>();
     
-    static ArrayList<Debris> debrisBuffer = new ArrayList<>();
-    static ArrayList<Projectile> bulletBuffer = new ArrayList<>();
-    static ArrayList<Explosion> explosionBuffer = new ArrayList<>();
-    static ArrayList<Enemy> enemyBuffer = new ArrayList<>();
+    static List<Debris> debrisBuffer = new ArrayList<>();
+    static List<Projectile> bulletBuffer = new ArrayList<>();
+    static List<Explosion> explosionBuffer = new ArrayList<>();
+    static List<Enemy> enemyBuffer = new ArrayList<>();
     
     static HashSet<Integer> keys = new HashSet<>();
     static int mouseButton, mouseX, mouseY;
@@ -88,8 +89,8 @@ public class SpaceShooter {
         }
     }
     
-    static ArrayList updateSprite(ArrayList list, ArrayList buffer) {
-        ArrayList both = list;
+    static List updateSprite(List list, List buffer) {
+        List both = list;
         if (resetSprites) both.clear();
         else {
             for (Iterator<Sprite> it = both.iterator(); it.hasNext();) {

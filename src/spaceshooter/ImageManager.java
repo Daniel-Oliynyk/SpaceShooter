@@ -6,13 +6,12 @@ import javax.imageio.ImageIO;
 import static spaceshooter.SpaceShooter.*;
 
 public class ImageManager {
-    static final int ASTEROID_SPRITES = 3, EXPLOSION_SPRITES = 7, ROCK_SPRITES = 3, METAL_SPRITES = 3, HEALTH_SPRITES = 3;
-    static BufferedImage SHIP, MISSILE, PLASMA, ALIEN, MOTHERSHIP;
+    static final int ASTEROID_SPRITES = 3, EXPLOSION_SPRITES = 7, ROCK_SPRITES = 3, METAL_SPRITES = 3;
+    static BufferedImage SHIP, MISSILE, PLASMA, ALIEN, MOTHERSHIP, HEALTH;
     static BufferedImage[] ASTEROID = new BufferedImage[ASTEROID_SPRITES];
     static BufferedImage[] EXPLOSION = new BufferedImage[EXPLOSION_SPRITES];
     static BufferedImage[] ROCK = new BufferedImage[ROCK_SPRITES];
     static BufferedImage[] METAL = new BufferedImage[METAL_SPRITES];
-    static BufferedImage[] HEALTH = new BufferedImage[HEALTH_SPRITES];
             
     static void initialize() {
         try {
@@ -21,12 +20,12 @@ public class ImageManager {
             PLASMA = ImageIO.read(SpaceShooter.class.getResourceAsStream("img/enemy/plasma.png"));
             ALIEN = ImageIO.read(SpaceShooter.class.getResourceAsStream("img/enemy/enemy0.png"));
             MOTHERSHIP = ImageIO.read(SpaceShooter.class.getResourceAsStream("img/enemy/enemy1.png"));
+            HEALTH = ImageIO.read(SpaceShooter.class.getResourceAsStream("img/debris/health.png"));
             
             for (int i = 0; i < ASTEROID_SPRITES; i++) ASTEROID[i] = ImageIO.read(SpaceShooter.class.getResourceAsStream("img/debris/asteroid" + i + ".png"));
             for (int i = 0; i < EXPLOSION_SPRITES; i++) EXPLOSION[i] = ImageIO.read(SpaceShooter.class.getResourceAsStream("img/explosions/explosion" + i + ".png"));
             for (int i = 0; i < ROCK_SPRITES; i++) ROCK[i] = ImageIO.read(SpaceShooter.class.getResourceAsStream("img/debris/rock" + i + ".png"));
             for (int i = 0; i < METAL_SPRITES; i++) METAL[i] = ImageIO.read(SpaceShooter.class.getResourceAsStream("img/debris/metal" + i + ".png"));
-            for (int i = 0; i < HEALTH_SPRITES; i++) HEALTH[i] = ImageIO.read(SpaceShooter.class.getResourceAsStream("img/debris/health" + i + ".png"));
         }
         catch (IOException ex) {
             System.err.println(ex);

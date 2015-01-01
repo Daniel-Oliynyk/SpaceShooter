@@ -1,5 +1,6 @@
 package spaceshooter;
 
+import java.awt.Color;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import static spaceshooter.SpaceShooter.*;
@@ -32,14 +33,22 @@ public class Projectile extends Sprite {
         for (Debris debris : debrisSprites) {
             if (!debris.remove && x + SIZE > debris.x && y + SIZE > debris.y && x < debris.x + debris.SIZE && y < debris.y + debris.SIZE && debris.TYPE != Debris.HEALTH_FRAGMENT) {
                 debris.health--;
-                if (debris.health < 1) debris.remove = true;
-                if (debris.remove) {
-                    if (debris.SIZE == 80) explosionBuffer.add(new Explosion(debris.x, debris.y, 2, debris.SIZE, Explosion.ROCK_FRAGMENTS, true));
-                    else if (debris.SIZE == 20) explosionBuffer.add(new Explosion(x, y, SIZE));
-                    if (COLLIDE_WITH_ENEMY) Player.score += debris.SIZE / 4;
+                if (debris.health < 1) {
+                    debris.remove = true;
+                    if (debris.TYPE == Debris.ASTEROID) explosionBuffer.add(new Explosion(debris.x, debris.y, 2, debris.SIZE, Explosion.ROCK_FRAGMENTS, true));
+                    else if (debris.TYPE == Debris.ROCK_FRAGMENT || debris.TYPE == Debris.METAL_FRAGMENT) explosionBuffer.add(new Explosion(x, y, SIZE));
+                    if (COLLIDE_WITH_ENEMY) {
+                        int bonus = 0;
+                        if (debris.TYPE == Debris.ASTEROID) bonus = 25;
+                        else if (debris.TYPE == Debris.ROCK_FRAGMENT || debris.TYPE == Debris.METAL_FRAGMENT) bonus = 10;
+                        Player.score += bonus;
+                        Gui.addTextDisplay(x, y, "+" + bonus, Color.YELLOW);
+                    }
                 }
-                
-                if (!debris.remove) explosionBuffer.add(new Explosion(x, y, SIZE));
+                else {
+                    explosionBuffer.add(new Explosion(x, y, SIZE));
+                    Gui.addTextDisplay(x, y, "-50", Color.RED);
+                }
                 remove = true;
                 break;
             }
@@ -59,9 +68,16 @@ public class Projectile extends Sprite {
                     if (enemy.health < 1) {
                         enemy.remove = true;
                         explosionBuffer.add(new Explosion(enemy.x, enemy.y, 2, enemy.SIZE, Explosion.METAL_FRAGMENTS, true));
-                        Player.score += 15;
+                        int bonus = 0;
+                        if (enemy.TYPE == Enemy.ALIEN) bonus = 35;
+                        else if (enemy.TYPE == Enemy.MOTHERSHIP) bonus = 50;
+                        Player.score += bonus;
+                        Gui.addTextDisplay(x, y, "+" + bonus, Color.YELLOW);
                     }
-                    else explosionBuffer.add(new Explosion(x, y, SIZE));
+                    else {
+                        explosionBuffer.add(new Explosion(x, y, SIZE));
+                        Gui.addTextDisplay(x, y, "-50", Color.RED);
+                    }
                     remove = true;
                     break;
                 }

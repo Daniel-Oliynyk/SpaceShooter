@@ -67,9 +67,11 @@ public class Projectile extends Sprite {
                     enemy.health--;
                     if (enemy.health < 1) {
                         enemy.remove = true;
-                        explosionBuffer.add(new Explosion(enemy.x, enemy.y, 2, enemy.SIZE, Explosion.METAL_FRAGMENTS, true));
+                        if (enemy.TYPE != Enemy.DRONE) explosionBuffer.add(new Explosion(enemy.x, enemy.y, 2, enemy.SIZE, Explosion.METAL_FRAGMENTS, true));
+                        else explosionBuffer.add(new Explosion(enemy.x, enemy.y, enemy.SIZE));
                         int bonus = 0;
-                        if (enemy.TYPE == Enemy.ALIEN) bonus = 35;
+                        if (enemy.TYPE == Enemy.DRONE) bonus = 15;
+                        else if (enemy.TYPE == Enemy.ALIEN) bonus = 35;
                         else if (enemy.TYPE == Enemy.MOTHERSHIP) bonus = 50;
                         Player.score += bonus;
                         Gui.addTextDisplay(x, y, "+" + bonus, Color.YELLOW);

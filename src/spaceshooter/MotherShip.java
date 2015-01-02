@@ -18,6 +18,7 @@ public class MotherShip extends Enemy {
     
     @Override
     void update() {
+        super.update();
         if (state == State.Moving) {
             angle = Math.atan2((Player.y + (Player.SIZE / 2)) - (y + (SIZE / 2)), (Player.x + (Player.SIZE / 2)) - (x + (SIZE / 2)));
             x += Math.cos(angle) * speed;
@@ -48,7 +49,7 @@ public class MotherShip extends Enemy {
         if (!remove && Player.x + Player.SIZE > x && Player.x < x + SIZE && Player.y + Player.SIZE > y && Player.y < y + SIZE) {
             explosionBuffer.add(new Explosion(x, y, SIZE));
             explosionBuffer.add(new Explosion(Player.x, Player.y, Player.SIZE));
-            Player.takeDamage(50);
+            Player.takeDamage(65);
             remove = true;
         }
         

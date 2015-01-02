@@ -22,6 +22,7 @@ public class Alien extends Enemy {
     
     @Override
     void update() {
+        super.update();
         if (current == State.Turning) {
             if (angle < targetAngle) angle += 0.1;
             else angle -= 0.1;
@@ -58,7 +59,7 @@ public class Alien extends Enemy {
         if (!remove && Player.x + Player.SIZE > x && Player.x < x + SIZE && Player.y + Player.SIZE > y && Player.y < y + SIZE) {
             explosionBuffer.add(new Explosion(x, y, SIZE));
             explosionBuffer.add(new Explosion(Player.x, Player.y, Player.SIZE));
-            Player.takeDamage(25);
+            Player.takeDamage(35);
             remove = true;
         }
         

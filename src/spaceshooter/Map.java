@@ -16,10 +16,11 @@ public class Map {
     }
     
     static void drawMap() {
-        painter.setColor(new Color(0x0b1037));
-        painter.fillRect(0, 0, WIDTH, HEIGHT);
+        fixedGraphics.setColor(new Color(0x0b1037));
+        fixedGraphics.fillRect(0, 0, WIDTH, HEIGHT);
+        painter.clearRect(0, 0, WIDTH, HEIGHT);
         
-        painter.setColor(Color.WHITE);
+        fixedGraphics.setColor(Color.WHITE);
         Point2D.Double[] temp = new Point2D.Double[STAR_AMOUNT];
         
         for (int i = 0; i < UPDATE_AMOUNT; i++) {
@@ -27,7 +28,11 @@ public class Map {
         }
         for (int i = 0; i < STAR_AMOUNT; i++) {
             if (i + UPDATE_AMOUNT < STAR_AMOUNT) temp[i + UPDATE_AMOUNT] = star[i];
-            painter.fillOval((int) star[i].x, (int) star[i].y, 3, 3);
+            int x = (int) star[i].x + transposeX;
+            x = (transposeX > 0)? x % WIDTH : ((x < 0)? x + WIDTH : x);
+            int y = (int) star[i].y + transposeY;
+            y = (transposeY > 0)? y % HEIGHT : ((y < 0)? y + HEIGHT : y);
+            fixedGraphics.fillOval(x, y, 3, 3);
         }
         star = temp;
         

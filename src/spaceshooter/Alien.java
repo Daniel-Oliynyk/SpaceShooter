@@ -59,7 +59,7 @@ public class Alien extends Enemy {
         if (!remove && Player.x + Player.SIZE > x && Player.x < x + SIZE && Player.y + Player.SIZE > y && Player.y < y + SIZE) {
             explosionBuffer.add(new Explosion(x, y, SIZE));
             explosionBuffer.add(new Explosion(Player.x, Player.y, Player.SIZE));
-            Player.takeDamage(35);
+            Player.takeDamage(60);
             remove = true;
         }
         

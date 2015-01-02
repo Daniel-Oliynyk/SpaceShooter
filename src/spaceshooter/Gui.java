@@ -15,22 +15,24 @@ public class Gui {
     static List<Integer> countDowns = new ArrayList<>();
     
     static void drawGui() {
-        painter.setColor(Color.BLACK);
-        painter.fillRect(10 - OUTLINE_WIDTH, 10 - OUTLINE_WIDTH, 100 + OUTLINE_WIDTH * 2, 10 + OUTLINE_WIDTH * 2);
+        fixedGraphics.setColor(Color.BLACK);
+        fixedGraphics.fillRect(10 - OUTLINE_WIDTH, 10 - OUTLINE_WIDTH, 100 + OUTLINE_WIDTH * 2, 10 + OUTLINE_WIDTH * 2);
         if (Player.health > 0) {
-            painter.setColor(Color.CYAN);
-            painter.fillRect(10, 10, Player.health, 10);
-            painter.setColor(Color.BLUE);
-            painter.fillRect(Player.health + 10, 10, 100 - Player.health, 10);
+            fixedGraphics.setColor(Color.CYAN);
+            fixedGraphics.fillRect(10, 10, Player.health, 10);
+            fixedGraphics.setColor(Color.BLUE);
+            fixedGraphics.fillRect(Player.health + 10, 10, 100 - Player.health, 10);
             if (Player.health < 100) {
-                painter.setColor(Color.BLACK);
-                painter.fillRect(Player.health + 10 - (OUTLINE_WIDTH / 2), 10, OUTLINE_WIDTH, 10);
+                fixedGraphics.setColor(Color.BLACK);
+                fixedGraphics.fillRect(Player.health + 10 - (OUTLINE_WIDTH / 2), 10, OUTLINE_WIDTH, 10);
             }
         }
-        painter.setColor(Color.YELLOW);
+        fixedGraphics.setColor(Color.YELLOW);
         String score = Player.score + "";
-        painter.drawString(score, WIDTH - (20 + (score.length() - 1) * 7), 20);
-        
+        fixedGraphics.drawString(score, WIDTH - (20 + (score.length() - 1) * 7), 20);
+    }
+    
+    static void drawTextOverlay() {
         for (int i = 0; i < text.size(); i++) {
             countDowns.set(i, countDowns.get(i) - 1);
             if (countDowns.get(i) < 1) {

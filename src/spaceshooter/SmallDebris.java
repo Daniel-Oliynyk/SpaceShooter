@@ -16,7 +16,7 @@ public class SmallDebris extends Debris {
         if (!remove && Player.x + Player.SIZE > x && Player.x < x + SIZE && Player.y + Player.SIZE > y && Player.y < y + SIZE) {
             explosionBuffer.add(new Explosion(x, y, SIZE));
             explosionBuffer.add(new Explosion(Player.x, Player.y, Player.SIZE));
-            Player.takeDamage(10);
+            Player.takeDamage(20);
             remove = true;
         }
     }

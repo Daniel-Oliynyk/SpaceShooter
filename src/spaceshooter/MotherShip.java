@@ -11,7 +11,7 @@ public class MotherShip extends Enemy {
         super(SET_SIZE, Enemy.MOTHERSHIP);
         this.x = x;
         this.y = y;
-        speed = ran.nextInt(2) + 1;
+        speed = ((double) ran.nextInt(2) + 1) * MULTIPLIER;
         angle = Math.atan2((Player.y + (Player.SIZE / 2)) - (y + (SIZE / 2)), (Player.x + (Player.SIZE / 2)) - (x + (SIZE / 2)));
         health = 6;
     }
@@ -26,7 +26,7 @@ public class MotherShip extends Enemy {
             counter--;
             if (counter < 1) {
                 state = State.Shooting;
-                speed = ran.nextInt(2) + 1;
+                speed = ((double) ran.nextInt(2) + 1) * MULTIPLIER;
                 counter = ran.nextInt(100) + 100;
             }
         }

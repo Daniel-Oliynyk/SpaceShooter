@@ -15,7 +15,7 @@ public class Alien extends Enemy {
         this.y = y;
         targetX = ran.nextInt(WIDTH - SIZE);
         targetY = ran.nextInt(HEIGHT - SIZE);
-        speed = ran.nextInt(3) + 2;
+        speed = ((double) ran.nextInt(3) + 2) * MULTIPLIER;
         angle = Math.atan2(targetY + (SIZE / 2) - (y + (SIZE / 2)), targetX + (SIZE / 2) - (x + (SIZE / 2)));
         health = 3;
     }
@@ -32,7 +32,7 @@ public class Alien extends Enemy {
             x += Math.cos(angle) * speed;
             y += Math.sin(angle) * speed;
             if (x > targetX - speed && x < targetX + speed && y > targetY - speed && y < targetY + speed) {
-                speed = ran.nextInt(2) + 2;
+                speed = ((double) ran.nextInt(3) + 2) * MULTIPLIER;
                 current = State.Turning;
                 next = State.Shooting;
                 targetAngle = Math.atan2((Player.y + (Player.SIZE / 2)) - (y + (SIZE / 2)), (Player.x + (Player.SIZE / 2)) - (x + (SIZE / 2)));
@@ -47,7 +47,7 @@ public class Alien extends Enemy {
             }
             if (missileCoolDown < 1) {
                 missileCoolDown = ran.nextInt(100) + 100;
-                speed = ran.nextInt(2) + 2;
+                speed = ((double) ran.nextInt(3) + 2) * MULTIPLIER;
                 targetX = ran.nextInt(WIDTH - SIZE);
                 targetY = ran.nextInt(HEIGHT - SIZE);
                 targetAngle = Math.atan2(targetY - (y + (SIZE / 2)), targetX - (x + (SIZE / 2)));

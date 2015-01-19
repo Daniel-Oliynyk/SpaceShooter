@@ -23,6 +23,7 @@ import javax.swing.JPanel;
 public class SpaceShooter {
     
     static final int FPS = 60, WIDTH = 800, HEIGHT = 800;
+    static final double MULTIPLIER = 60.0 / FPS;
     static final BufferedImage fixedImage = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB);
     static Graphics2D fixedGraphics = fixedImage.createGraphics();
     static final BufferedImage relativeImage = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB);
@@ -44,6 +45,7 @@ public class SpaceShooter {
     static boolean resetSprites;
     
     public static void main(String[] args) {
+        System.err.println(MULTIPLIER);
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Space Shooter Game");
@@ -89,11 +91,12 @@ public class SpaceShooter {
                 
                 if (resetSprites && debrisSprites.size() + bulletSprites.size() + explosionSprites.size() + enemySprites.size() == 0) resetSprites = false;
                 
-                transposeX = (-1 * Player.x) + (WIDTH / 2) - 25;
-                transposeY = (-1 * Player.y) + (HEIGHT / 2) - 25;
+//                transposeX = (-1 * (int) Player.x) + (WIDTH / 2) - 25;
+//                transposeY = (-1 * (int) Player.y) + (HEIGHT / 2) - 25;
                 
                 fixedGraphics.drawImage(relativeImage, transposeX, transposeY, null);
                 Gui.drawGui();
+                
                 frame.repaint();
             }
         }
@@ -101,7 +104,10 @@ public class SpaceShooter {
     
     static List updateSprite(List list, List buffer) {
         List both = list;
-        if (resetSprites) both.clear();
+        if (resetSprites) {
+            both.clear();
+            Gui.clearText();
+        }
         else {
             for (Iterator<Sprite> it = both.iterator(); it.hasNext();) {
                 Sprite sprite = it.next();

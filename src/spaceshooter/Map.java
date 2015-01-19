@@ -5,7 +5,8 @@ import java.awt.geom.Point2D;
 import static spaceshooter.SpaceShooter.*;
 
 public class Map {
-    static final int STAR_AMOUNT = 300, UPDATE_AMOUNT = 1, ASTEROID_CHANCE = 75, DRONE_CHANCE = 150, ALIEN_CHANCE = 250, MOTHERSHIP_CHANCE = 500, MAX_ALIENS = 5, MAX_MOTHERSHIPS = 2;
+    static final int STAR_AMOUNT = 300, UPDATE_AMOUNT = 1, ASTEROID_CHANCE = (int) (75 / MULTIPLIER), DRONE_CHANCE = (int) (150 / MULTIPLIER);
+    static final int ALIEN_CHANCE = (int) (250 / MULTIPLIER), MOTHERSHIP_CHANCE = (int) (500 / MULTIPLIER), MAX_ALIENS = 5, MAX_MOTHERSHIPS = 2;
     static Point2D.Double[] star = new Point2D.Double[STAR_AMOUNT];
     static int alienAmount, motherShipAmount;
 

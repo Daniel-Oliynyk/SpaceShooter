@@ -5,26 +5,27 @@ import static spaceshooter.SpaceShooter.*;
 
 public class Explosion extends Sprite {
     static final int NO_FRAGMENTS = 0, ROCK_FRAGMENTS = 1, METAL_FRAGMENTS = 2;
-    final int LENGTH_MULTIPLIER, SCALE, TYPE, HEALTH_CHANCE;
+    final int SCALE, TYPE, HEALTH_CHANCE;
+    final double LENGTH_MULTIPLIER;
     int countDown;
     
     public Explosion(double x, double y, int size) {
         this.x = x;
         this.y = y;
-        this.LENGTH_MULTIPLIER = 2;
+        this.LENGTH_MULTIPLIER = 2 / MULTIPLIER;
         this.SCALE = size / 20;
         this.TYPE = NO_FRAGMENTS;
-        countDown = ImageManager.EXPLOSION_SPRITES * LENGTH_MULTIPLIER;
+        countDown = (int) (ImageManager.EXPLOSION_SPRITES * LENGTH_MULTIPLIER);
         HEALTH_CHANCE = 0;
     }
     
     public Explosion(double x, double y, int length, int size, int type, boolean dropHealth) {
         this.x = x;
         this.y = y;
-        this.LENGTH_MULTIPLIER = length;
+        this.LENGTH_MULTIPLIER = length / MULTIPLIER;
         this.SCALE = size / 20;
         this.TYPE = type;
-        countDown = ImageManager.EXPLOSION_SPRITES * LENGTH_MULTIPLIER;
+        countDown = (int) (ImageManager.EXPLOSION_SPRITES * LENGTH_MULTIPLIER);
         if (dropHealth) HEALTH_CHANCE = 5;
         else HEALTH_CHANCE = 0;
         
@@ -40,7 +41,7 @@ public class Explosion extends Sprite {
     @Override
     void update() {
         countDown--;
-        if (countDown < 0) remove = true;
+        if (countDown <= 0) remove = true;
         
         int index = ImageManager.EXPLOSION_SPRITES - 1 - (int) (countDown / LENGTH_MULTIPLIER);
         if (SCALE == 1) painter.drawImage(ImageManager.EXPLOSION[index], (int) x, (int) y, null);

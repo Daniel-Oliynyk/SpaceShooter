@@ -6,12 +6,12 @@ import java.awt.image.BufferedImage;
 import static spaceshooter.SpaceShooter.*;
 
 public class Projectile extends Sprite {
-    static final int SPEED = 7, SIZE = 20, PLAYER_MISSILE = 0, ENEMY_MISSILE = 1, ENEMY_PLASMA = 2;
+    static final int SPEED = (int) (7 * MULTIPLIER), SIZE = 20, PLAYER_MISSILE = 0, ENEMY_MISSILE = 1, ENEMY_PLASMA = 2;
     final double ANGLE;
     final boolean COLLIDE_WITH_ENEMY;
     final BufferedImage IMAGE;
     
-    public Projectile(int x, int y, double angle, int missileType) {
+    public Projectile(double x, double y, double angle, int missileType) {
         this.x = x;
         this.y = y;
         this.ANGLE = angle;

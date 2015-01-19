@@ -8,8 +8,10 @@ import static spaceshooter.SpaceShooter.*;
 
 public class Player {
     
-    static final int SPEED = 3, SIZE = 40, SHOOT_DELAY = 15;
-    static int x = WIDTH / 2 - (SIZE / 2), y = HEIGHT / 2 - (SIZE / 2), delay, health = 100, score;
+    static final int SIZE = 40, SHOOT_DELAY = (int) (15 / MULTIPLIER);
+    static final double SPEED = 3 * MULTIPLIER;
+    static double x = WIDTH / 2 - (SIZE / 2), y = HEIGHT / 2 - (SIZE / 2);
+    static int delay, health = 100, score;
     
     static void drawPlayer() {
         if (keys.contains(KeyEvent.VK_A) && x - SPEED > 0) x -= SPEED;

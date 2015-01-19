@@ -10,7 +10,7 @@ public class Drone extends Enemy {
         super(SET_SIZE, Enemy.DRONE);
         this.x = x;
         this.y = y;
-        speed = ran.nextInt(4) + 3;
+        speed = ((double) ran.nextInt(4) + 3) * MULTIPLIER;
         angle = Math.atan2((Player.y + (Player.SIZE / 2)) - (y + (SIZE / 2)), (Player.x + (Player.SIZE / 2)) - (x + (SIZE / 2)));
         health = 1;
     }

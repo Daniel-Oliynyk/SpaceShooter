@@ -48,11 +48,11 @@ public class Gui {
         }
     }
     
-    static void addTextDisplay(double x, double y, String message, Color color) {
-        text.add(message);
-        locations.add(new Point((int) x, (int) y));
-        colors.add(color);
-        countDowns.add((int) (40 * MULTIPLIER));
+    static void addTextDisplay(double x, double y, String text, Color color) {
+        Gui.text.add(text);
+        Gui.locations.add(new Point((int) x, (int) y));
+        Gui.colors.add(color);
+        countDowns.add(40);
     }
     
     static void clearText() {
@@ -60,6 +60,6 @@ public class Gui {
         locations.clear();
         colors.clear();
         countDowns.clear();
-    }
+     }
     
 }

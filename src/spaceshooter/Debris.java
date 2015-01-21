@@ -16,7 +16,7 @@ public class Debris extends Sprite {
         this.x = x;
         this.y = y;
         this.DIRECTION = angle;
-        this.SPEED = speed * MULTIPLIER;
+        this.SPEED = speed;
         this.ROTATION_SPEED = ran.nextInt(180) + 360;
         this.SIZE = size;
         this.TYPE = type;

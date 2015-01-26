@@ -3,9 +3,18 @@ package spaceshooter;
 import java.awt.geom.AffineTransform;
 import static spaceshooter.SpaceShooter.*;
 
+/**
+ * The drone subclass of enemy charges at the player. It has low health but very high speed.
+ * @author Daniel Oliynyk
+ */
 public class Drone extends Enemy {
     static final int SET_SIZE = 40;
     
+    /**
+     * Creates the drone on the specified x and y. Speed is randomly generated and the direction is set towards the player.
+     * @param x The x coordinate where the drone spawns.
+     * @param y The y coordinate where the drone spawns.
+     */
     public Drone(double x, double y) {
         super(SET_SIZE, Enemy.DRONE);
         this.x = x;

@@ -5,6 +5,10 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import static spaceshooter.SpaceShooter.*;
 
+/**
+ * The class for importing and managing images.
+ * @author Daniel Oliynyk
+ */
 public class ImageManager {
     static final int ASTEROID_SPRITES = 3, EXPLOSION_SPRITES = 7, ROCK_SPRITES = 3, METAL_SPRITES = 3;
     static BufferedImage SHIP, MISSILE, PLASMA, DRONE, ALIEN, MOTHERSHIP, HEALTH;

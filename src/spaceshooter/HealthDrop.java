@@ -2,8 +2,19 @@ package spaceshooter;
 
 import java.awt.Color;
 
+/**
+ * The health pack subclass of debris is a small health pack that can heal the player. It is occasionally dropped in explosions.
+ * @author Daniel Oliynyk
+ */
 public class HealthDrop extends Debris {
 
+    /**
+     * Creates the health pack on the specified x and y.
+     * @param x The x coordinate where the health pack spawns.
+     * @param y The y coordinate where the health pack spawns.
+     * @param angle The angle the health pack is moving in.
+     * @param speed The movement speed of the health pack.
+     */
     public HealthDrop(double x, double y, double angle, double speed) {
         super(x, y, angle, speed, 20, HEALTH_FRAGMENT, ImageManager.HEALTH);
     }

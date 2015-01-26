@@ -3,12 +3,21 @@ package spaceshooter;
 import java.awt.geom.AffineTransform;
 import static spaceshooter.SpaceShooter.*;
 
+/**
+ * The alien subclass of enemy shoots at the player and has medium health and speed.
+ * @author Daniel Oliynyk
+ */
 public class Alien extends Enemy {
     static final int SET_SIZE = 80;
     double targetX, targetY, targetAngle;
     int missileCoolDown = ran.nextInt(100) + 100;
     State current = State.Moving, next;
     
+    /**
+     * Creates the alien on the specified x and y. Speed and direction are randomly generated.
+     * @param x The x coordinate where the alien spawns.
+     * @param y The y coordinate where the alien spawns.
+     */
     public Alien(double x, double y) {
         super(SET_SIZE, Enemy.ALIEN);
         this.x = x;

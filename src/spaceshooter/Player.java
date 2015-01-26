@@ -6,6 +6,10 @@ import java.awt.geom.AffineTransform;
 import javax.swing.JOptionPane;
 import static spaceshooter.SpaceShooter.*;
 
+/**
+ * The player class manages the location and controls of the user.
+ * @author Daniel Oliynyk
+ */
 public class Player {
     
     static final int SPEED = 3, SIZE = 40, SHOOT_DELAY = 15;

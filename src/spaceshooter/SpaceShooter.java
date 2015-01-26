@@ -20,6 +20,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**
+ * The main class for the space-themed arcade game.
+ * @author Daniel Oliynyk
+ */
 public class SpaceShooter {
     
     static final int FPS = 60, WIDTH = 800, HEIGHT = 800;
@@ -43,6 +47,10 @@ public class SpaceShooter {
     static int mouseButton, mouseX, mouseY, transposeX, transposeY;
     static boolean resetSprites;
     
+    /**
+     * The first method to execute. Contains infinite loop with all updates and drawing within it.
+     * @param args Currently not implemented.
+     */
     public static void main(String[] args) {
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

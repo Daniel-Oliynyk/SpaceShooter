@@ -3,11 +3,22 @@ package spaceshooter;
 import java.awt.Image;
 import static spaceshooter.SpaceShooter.*;
 
+/**
+ * The explosion class creates and manages explosion animations.
+ * @author Daniel Oliynyk
+ */
 public class Explosion extends Sprite {
     static final int NO_FRAGMENTS = 0, ROCK_FRAGMENTS = 1, METAL_FRAGMENTS = 2;
     final int LENGTH_MULTIPLIER, SCALE, TYPE, HEALTH_CHANCE;
     int countDown;
     
+    /**
+     * A simpler constructor to generate an explosion with only the location and size required.
+     * The rest of the variables use default values.
+     * @param x The x coordinate of the explosion.
+     * @param y The y coordinate of the explosion.
+     * @param size The size of the explosion animation.
+     */
     public Explosion(double x, double y, int size) {
         this.x = x;
         this.y = y;
@@ -18,6 +29,15 @@ public class Explosion extends Sprite {
         HEALTH_CHANCE = 0;
     }
     
+    /**
+     * The more advanced constructor to generate an explosion with all custom values.
+     * @param x The x coordinate of the explosion.
+     * @param y The y coordinate of the explosion.
+     * @param length The length of time the explosion plays.
+     * @param size The size of the explosion animation.
+     * @param type The fragment type of explosion. Can be one of the static ones declared in this class.
+     * @param dropHealth Whether or not to drop health packs in the explosion.
+     */
     public Explosion(double x, double y, int length, int size, int type, boolean dropHealth) {
         this.x = x;
         this.y = y;

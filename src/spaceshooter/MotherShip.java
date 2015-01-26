@@ -2,11 +2,20 @@ package spaceshooter;
 
 import static spaceshooter.SpaceShooter.*;
 
+/**
+ * The mother ship subclass of enemy shoots a cluster of bullets. It has high health but low speed.
+ * @author Daniel Oliynyk
+ */
 public class MotherShip extends Enemy {
     static final int SET_SIZE = 160, MISSILE_AMOUNT = 16;
     int counter = ran.nextInt(100) + 100, missileCoolDown = 30;
     State state = State.Moving;
     
+    /**
+     * Creates the mother ship on the specified x and y. Speed and direction are randomly generated.
+     * @param x The x coordinate where the mother ship spawns.
+     * @param y The y coordinate where the mother ship spawns.
+     */
     public MotherShip(double x, double y) {
         super(SET_SIZE, Enemy.MOTHERSHIP);
         this.x = x;

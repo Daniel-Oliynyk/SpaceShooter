@@ -4,6 +4,10 @@ import java.awt.Color;
 import java.awt.geom.Point2D;
 import static spaceshooter.SpaceShooter.*;
 
+/**
+ * The map class manages enemy spawning and the background.
+ * @author Daniel Oliynyk
+ */
 public class Map {
     static final int STAR_AMOUNT = 300, UPDATE_AMOUNT = 1, ASTEROID_CHANCE = 75, DRONE_CHANCE = 150, ALIEN_CHANCE = 250, MOTHERSHIP_CHANCE = 500, MAX_ALIENS = 5, MAX_MOTHERSHIPS = 2;
     static Point2D.Double[] star = new Point2D.Double[STAR_AMOUNT];

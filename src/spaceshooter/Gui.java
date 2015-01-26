@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 import static spaceshooter.SpaceShooter.*;
 
+/**
+ * The GUI manages the user interface and the text overlay.
+ * @author Daniel Oliynyk
+ */
 public class Gui {
     
     static final int OUTLINE_WIDTH = 4;

@@ -5,12 +5,23 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import static spaceshooter.SpaceShooter.*;
 
+/**
+ * The projectile subclass of sprite is a basic missile with a set speed and damage.
+ * @author Daniel Oliynyk
+ */
 public class Projectile extends Sprite {
     static final int SPEED = 7, SIZE = 20, PLAYER_MISSILE = 0, ENEMY_MISSILE = 1, ENEMY_PLASMA = 2;
     final double ANGLE;
     final boolean COLLIDE_WITH_ENEMY;
     final BufferedImage IMAGE;
     
+    /**
+     * Creates a missile at the x and y with a set direction and default speed.
+     * @param x The x coordinate where the missile is created.
+     * @param y The y coordinate where the missile is created.
+     * @param angle The angle the missile travels.
+     * @param missileType The type of missile. Can be one of the static ones declared in this class.
+     */
     public Projectile(int x, int y, double angle, int missileType) {
         this.x = x;
         this.y = y;
